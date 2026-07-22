@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>線形代数 最終試験 一夜漬け教科書</title>
+<script>
+MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml: { scale: 0.98 } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+<style>
+  :root{
+    --bg:#f4f6fb; --card:#ffffff; --ink:#1d2433; --sub:#5b6478;
+    --line:#e3e8f0; --accent:#3b6ef5; --accent-d:#2350c8;
+    --predict:#2563eb; --predict-bg:#e8f0ff;
+    --write:#0f9d6b; --write-bg:#e4f7ef;
+    --sql:#7c3aed; --sql-bg:#f1e9ff;
+    --code-bg:#1e2433; --code-ink:#e6ebf5; --code-cmt:#8ea0c0; --code-out:#7ee2b8;
+    --warn:#c2410c; --ok:#0f9d6b; --gold:#b45309; --gold-bg:#fff7ed;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif; line-height:1.78;}
+  .topbar{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.93);
+    backdrop-filter:blur(8px); border-bottom:1px solid var(--line);
+    padding:9px 16px; display:flex; align-items:center; gap:13px; flex-wrap:wrap;}
+  .topbar h1{font-size:14px; margin:0; font-weight:800; letter-spacing:.02em}
+  .countdown{font-size:13px; color:var(--warn); font-weight:800; white-space:nowrap}
+  .progwrap{flex:1; min-width:150px; display:flex; align-items:center; gap:8px}
+  .progbar{flex:1; height:9px; background:var(--line); border-radius:99px; overflow:hidden}
+  .progfill{height:100%; width:0%; background:linear-gradient(90deg,#3b6ef5,#0f9d6b); transition:width .3s}
+  .progtext{font-size:12px; color:var(--sub); white-space:nowrap}
+  .topbar button{font-size:12px; border:1px solid var(--line); background:#fff; color:var(--sub);
+    padding:5px 10px; border-radius:8px; cursor:pointer;}
+  .topbar button:hover{border-color:var(--accent); color:var(--accent)}
+  .layout{display:grid; grid-template-columns:250px minmax(0,1fr); gap:30px;
+    max-width:1140px; margin:0 auto; padding:20px 20px 140px;}
+  .sidebar{position:sticky; top:56px; align-self:start; max-height:calc(100vh - 74px); overflow:auto; padding-right:4px}
+  .toc-h{font-size:11px; font-weight:800; color:var(--sub); letter-spacing:.08em; margin:6px 0 8px}
+  .toc{display:flex; flex-direction:column; gap:1px}
+  .toc a{display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--ink);
+    font-size:13px; padding:7px 10px; border-radius:8px; border-left:3px solid transparent;}
+  .toc a:hover{background:#eef2fb}
+  .toc a.active{background:#eef2fb; color:var(--accent-d); font-weight:700; border-left-color:var(--accent)}
+  .toc .dot{width:8px; height:8px; border-radius:99px; flex:none; background:var(--line)}
+  .toc .p1{background:#ef4444} .toc .p2{background:#f59e0b} .toc .p3{background:#38bdf8}
+  .toc small{color:var(--sub); font-weight:600; font-size:10px}
+  .content{min-width:0}
+  .lead{color:var(--sub); font-size:14px; margin:2px 0 18px}
+  .sec-title{font-size:21px; margin:44px 0 4px; font-weight:800; display:flex; align-items:center; gap:10px; scroll-margin-top:64px; flex-wrap:wrap}
+  .sec-title:first-of-type{margin-top:10px}
+  .sec-title .pri{font-size:11px; font-weight:800; padding:3px 9px; border-radius:99px}
+  .pri.p1{background:#fde8e8; color:#b91c1c} .pri.p2{background:#fef3c7; color:#92400e} .pri.p3{background:#e0f2fe; color:#075985}
+  .sec-sub{color:var(--sub); font-size:13.5px; margin:0 0 16px}
+  .infobox{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 20px; margin-bottom:18px}
+  .infobox h2{font-size:15px; margin:0 0 10px; display:flex; align-items:center; gap:8px}
+  .infobox h2::before{content:""; width:4px; height:18px; background:var(--accent); border-radius:2px}
+  .infobox p{margin:8px 0; font-size:14px}
+  .infobox ul,.infobox ol{margin:8px 0; padding-left:22px; font-size:14px}
+  .infobox li{margin:5px 0}
+  .infobox b{color:var(--warn)}
+  .infobox .key{color:var(--accent-d); font-weight:700}
+  .infobox.cyg{border-color:#bcd0f7; background:#f7faff}
+  code{background:#eef2fb; padding:1px 6px; border-radius:5px; font-size:.9em;
+    font-family:"SF Mono",Menlo,Consolas,monospace}
+  .cheat{background:var(--gold-bg); border:1px solid #fed7aa; border-radius:14px; padding:14px 18px; margin-bottom:18px;}
+  .cheat h3{margin:0 0 8px; font-size:14px; color:var(--gold); display:flex; align-items:center; gap:7px}
+  .cheat ul{margin:0; padding-left:20px; font-size:13.5px}
+  .cheat li{margin:5px 0}
+  .cheat code{background:#fff; border:1px solid #fed7aa}
+  .algebra{font-family:"SF Mono",Menlo,Consolas,monospace; background:#eef2fb; border:1px solid #dbe4f3;
+    border-radius:8px; padding:10px 13px; margin:8px 0; font-size:13.5px; overflow-x:auto; white-space:pre-wrap; word-break:break-word;}
+  .mbox{background:#f7faff; border:1px solid #dbe4f3; border-radius:8px; padding:6px 13px; margin:8px 0; overflow-x:auto;}
+  .problem{background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:18px 20px; margin-bottom:14px; box-shadow:0 1px 3px rgba(20,30,60,.04);}
+  .phead{display:flex; align-items:center; gap:9px; flex-wrap:wrap; margin-bottom:10px}
+  .pno{font-weight:800; font-size:16px}
+  .chip{font-size:12px; padding:3px 10px; border-radius:99px; font-weight:600}
+  .chip.topic{background:#eef2fb; color:var(--sub); border:1px solid var(--line)}
+  .badge{font-size:11px; padding:3px 9px; border-radius:6px; font-weight:800; letter-spacing:.03em}
+  .badge.real{background:#fee2e2; color:#b91c1c}
+  .badge.algebra{background:var(--predict-bg); color:var(--predict)}
+  .badge.write{background:var(--write-bg); color:var(--write)}
+  .badge.hard{background:#fde8e8; color:#b91c1c}
+  .badge.new{background:#fef3c7; color:#92400e}
+  .stmt{font-size:14.5px; margin:4px 0 10px}
+  .stmt ol,.stmt ul{margin:8px 0; padding-left:22px}
+  .stmt li{margin:3px 0}
+  .paper{font-size:12.5px; color:var(--write); background:var(--write-bg); border:1px dashed #86efac;
+    border-radius:8px; padding:7px 12px; margin:8px 0; display:flex; align-items:center; gap:7px}
+  .reveal{margin-top:12px; margin-right:8px; font-size:13px; background:#fff;
+    border:1px solid var(--line); color:var(--accent); padding:7px 14px; border-radius:8px; cursor:pointer; font-weight:700;}
+  .reveal:hover{background:#eef2fb}
+  .solution{display:none; margin-top:14px; padding:14px 16px; border-left:3px solid var(--ok); background:#f3fbf7; border-radius:0 10px 10px 0}
+  .solution.show{display:block}
+  .solution h4{margin:0 0 8px; font-size:13px; color:var(--ok); letter-spacing:.03em}
+  .solution h4:not(:first-child){margin-top:14px}
+  .solution .out{font-weight:700; white-space:pre-wrap; font-family:"SF Mono",Menlo,Consolas,monospace; font-size:13px; background:#e4f7ef; padding:8px 12px; border-radius:8px; display:block; margin:6px 0}
+  .solution .explain{font-size:13.5px; margin-top:10px}
+  .miss{background:#fff5f5; border:1px solid #fecaca; border-radius:10px; padding:10px 14px; margin:10px 0; font-size:13.5px; color:#b91c1c}
+  .conf{display:flex; align-items:center; gap:6px; margin-top:14px; flex-wrap:wrap}
+  .conf-label{font-size:12px; color:var(--sub)}
+  .conf button{font-size:12px; border:1px solid var(--line); background:#fff; color:var(--sub);
+    padding:5px 12px; border-radius:99px; cursor:pointer; font-weight:600}
+  .conf button:hover{border-color:var(--accent)}
+  .conf button.active[data-v="ng"]{background:#fde8e8; color:#b91c1c; border-color:#fca5a5}
+  .conf button.active[data-v="maybe"]{background:#fef3c7; color:#92400e; border-color:#fcd34d}
+  .conf button.active[data-v="ok"]{background:var(--write-bg); color:var(--write); border-color:#86efac}
+  .tbl{border-collapse:collapse; margin:8px 0; font-size:13px; background:#fff}
+  .tbl th,.tbl td{border:1px solid var(--line); padding:5px 10px; text-align:center}
+  .tbl th{background:#eef2fb}
+  @media (max-width:820px){
+    .layout{grid-template-columns:1fr; gap:0}
+    .sidebar{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>📐 線形代数 一夜漬け</h1>
+  <span class="countdown" id="countdown"></span>
+  <div class="progwrap">
+    <div class="progbar"><div class="progfill" id="progfill"></div></div>
+    <span class="progtext" id="progtext"></span>
+  </div>
+  <button id="revealAll">全部の解答を表示</button>
+  <button id="resetBtn">記録リセット</button>
+</div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="toc-h">目次 / TABLE OF CONTENTS</div>
+    <nav class="toc" id="toc">
+      <a href="#intro"><span class="dot"></span>使い方＆出題分析</a>
+      <a href="#q1"><span class="dot p1"></span>① 写像プロット + Im/Ker</a>
+      <a href="#q2"><span class="dot p1"></span>② 連立方程式の一般解</a>
+      <a href="#q3"><span class="dot p1"></span>③ 一次結合（罠あり）</a>
+      <a href="#q6"><span class="dot p1"></span>⑥ 直交補空間</a>
+      <a href="#q7"><span class="dot p1"></span>⑦ 対角化（新出）</a>
+      <a href="#q4"><span class="dot p2"></span>④ グラム・シュミット</a>
+      <a href="#q5"><span class="dot p2"></span>⑤ Im/Ker 次元と基底</a>
+      <a href="#ala"><span class="dot p3"></span>ALA（Boyd）パート</a>
+      <a href="#check"><span class="dot"></span>最終チェック＆当日</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <p class="lead">関西学院大学「情報科学のための数学演習(線形代数)」西谷担当 ／ MathEx + MathExALA。過去問 v23.2・v24.2・v25.2 の実物を解析。<b>持ち込み可</b>の試験なので、このページを印刷 or PC で持参して勝つ。</p>
+
+    <!-- ================= INTRO ================= -->
+    <h2 class="sec-title" id="intro">使い方＆出題分析</h2>
+    <div class="infobox cyg">
+      <h2>🎯 過去問3年で判明した「毎年ほぼ固定」の5問構成</h2>
+      <table class="tbl" style="width:100%">
+        <thead><tr><th>#</th><th>テーマ</th><th>2023</th><th>2024</th><th>2025</th></tr></thead>
+        <tbody>
+          <tr><td><b>①</b></td><td style="text-align:left">写像プロット + Im/Ker（特異行列）</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td><b>②</b></td><td style="text-align:left">連立1次方程式の一般解</td><td>✓</td><td>—</td><td>✓</td></tr>
+          <tr><td><b>③</b></td><td style="text-align:left">一次結合（表せない罠）</td><td>✓</td><td>✓</td><td>✓</td></tr>
+          <tr><td><b>④</b></td><td style="text-align:left">グラム・シュミット</td><td>✓</td><td>✓</td><td>—</td></tr>
+          <tr><td><b>⑤</b></td><td style="text-align:left">Im/Ker の次元と基底（単独）</td><td>✓</td><td>✓</td><td>①に統合</td></tr>
+          <tr><td><b>⑥</b></td><td style="text-align:left">直交補空間 $V^\perp$</td><td>—</td><td>✓</td><td>✓</td></tr>
+          <tr><td><b>⑦</b></td><td style="text-align:left"><b>対角化（新出）</b></td><td>—</td><td>—</td><td>✓</td></tr>
+        </tbody>
+      </table>
+      <p><b>戦略：</b>①③⑥は<u>3年連続レベルで確実</u>、②は隔年で出る、⑦は2025新登場で<u>2026も警戒</u>。④⑤は2025で姿を消したが復活に備えて型だけ確保。このページは「確実に出る順(P1)→保険(P2)→ALA(P3)」で並べてある。</p>
+      <p style="margin-bottom:0"><b>🔮 2026予想：</b>①②③⑥は<span class="key">ほぼ確定</span>。5問目は <span class="key">⑦対角化</span> か <span class="key">④グラム・シュミット</span> のどちらか。→ このページでは<u>両方とも過去問の実物解答つきで重点強化済み</u>なので穴なし。</p>
+    </div>
+
+    <div class="cheat">
+      <h3>🪙 開始前にリロードする「型」</h3>
+      <ul>
+        <li><b>特異行列の写像</b>：$A\boldsymbol{x}=(\,\text{スカラー}\,)\times(\text{列ベクトル})$ に分解。$\mathrm{Im}$＝列の直線、$\mathrm{Ker}$＝$A\boldsymbol{x}=\boldsymbol0$ の直線。</li>
+        <li><b>一次結合の罠</b>：基底が一次従属（$\det=0$）だと、$\boldsymbol a$ は表せるが $\boldsymbol b$ は<b>矛盾＝表せない</b>。3年連続。</li>
+        <li><b>Im/Ker</b>：掃き出し→rank $r$。$\dim\mathrm{Im}=r$（基底は<b>元の列</b>）、$\dim\mathrm{Ker}=n-r$。次元定理 $\dim\mathrm{Im}+\dim\mathrm{Ker}=n$。</li>
+        <li><b>グラム・シュミット</b>：既に作った $\boldsymbol e_i$ 方向の射影を引いて正規化、を繰り返す。$\boldsymbol u_k=\boldsymbol0$ なら一次従属。</li>
+        <li><b>対角化</b>：$\det(A-\lambda I)=0$→固有ベクトルを列に並べ $P$、$P^{-1}AP=\mathrm{diag}(\lambda_i)$。検算は $\sum\lambda=\mathrm{tr}A$, $\prod\lambda=\det A$。</li>
+        <li><b>直交補空間</b>：$V$ が「$A\boldsymbol x=\boldsymbol0$ の解空間」なら $V^\perp$＝<b>係数（行）ベクトルが張る空間</b>。$\dim V+\dim V^\perp=n$。</li>
+      </ul>
+    </div>
+
+    <!-- ================= ① ================= -->
+    <h2 class="sec-title" id="q1">① 写像プロット + Im/Ker <span class="pri p1">P1・毎年出る</span></h2>
+    <p class="sec-sub">表現行列 $A$ で図の点がどこへ写るかプロットし、$\mathrm{Im}f$・$\mathrm{Ker}f$ を図示。過去 $A$ は3年とも $\det A=0$ の特異行列。</p>
+
+    <div class="infobox">
+      <h2>解き方テンプレ</h2>
+      <ol>
+        <li>各点 $(x,y)$ に $A$ を掛けて写像先を計算し、矢印つきでプロット（<b>写像前後の両方</b>を描く）。</li>
+        <li>$\det A=0$ なら平面全体が<b>1本の直線につぶれる</b>。$\mathrm{Im}f$＝列ベクトルの張る直線。</li>
+        <li>$\mathrm{Ker}f$＝$A\boldsymbol x=\boldsymbol0$ の解＝1行目 $ax+by=0$ の直線。</li>
+        <li>25年以降は「<b>次元と一組の基底</b>」も明記要求 → $\dim\mathrm{Im}=1$, $\dim\mathrm{Ker}=1$ と基底ベクトルを書く。</li>
+      </ol>
+    </div>
+
+    <div class="problem" data-id="q1_2025">
+      <div class="phead"><span class="pno">2025年度 問1</span><span class="badge real">過去問（実物）</span><span class="badge algebra">プロット+次元</span></div>
+      <div class="stmt">行列 $A=\begin{pmatrix}2&-2\\-1&1\end{pmatrix}$ を表現行列とする写像で図の8点はどこへ写るか。さらに $\mathrm{Im}f$・$\mathrm{Ker}f$ の<b>次元と一組の基底</b>を求め図示せよ。（8点は $(\pm1,\pm1),(0,\pm1),(\pm1,0)$ 付近の格子点）</div>
+      <div class="paper">✍️ 分解 → 打点 → Im/Ker の直線と基底を図に</div>
+      <button class="reveal">解答・解説を見る ▼</button>
+      <div class="solution">
+        <h4>写像の分解</h4>
+        <div class="mbox">$\begin{pmatrix}2&-2\\-1&1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=(x-y)\begin{pmatrix}2\\-1\end{pmatrix}$</div>
+        <div class="explain">全点が $(2,-1)$ 方向の直線に写る。各点で $t=x-y$ を出して $(2t,-t)$ に打点：$(1,0)\!\to\!(2,-1)$、$(0,1)\!\to\!(-2,1)$、$(1,1)\!\to\!(0,0)$、$(1,-1)\!\to\!(4,-2)$…</div>
+        <h4>Im / Ker</h4>
+        <div class="mbox">$\mathrm{Im}f:\ \dim=1,\ \text{基底}\{(2,-1)\}\ (\text{直線 }y=-\tfrac12x)$<br>$\mathrm{Ker}f:\ x-y=0,\ \dim=1,\ \text{基底}\{(1,1)\}\ (\text{直線 }y=x)$</div>
+        <div class="explain">検算：$\dim\mathrm{Im}+\dim\mathrm{Ker}=1+1=2=$ 定義域の次元 ✓。Ker の直線上の点は全て原点へ写る。</div>
+      </div>
+      <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
+    </div>
+
+    <div class="problem" data-id="q1_2024">
+      <div class="phead"><span class="pno">2024年度 問1</span><span class="badge real">過去問（実物）</span><span class="badge algebra">プロット+Im/Ker</span></div>
+      <div class="stmt">$A=\begin{pmatrix}1&-2\\-1&2\end{pmatrix}$ の写像で5点をプロットし、$\mathrm{Im}f$・$\mathrm{Ker}f$ を図示せよ。</div>
+      <div class="paper">✍️ $x-2y$ を計算して $(t,-t)$ に打つ</div>
+      <button class="reveal">解答・解説を見る ▼</button>
+      <div class="solution">
+        <h4>分解</h4>
+        <div class="mbox">$\begin{pmatrix}1&-2\\-1&2\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=(x-2y)\begin{pmatrix}1\\-1\end{pmatrix}$</div>
+        <div class="explain">全点が直線 $y=-x$ 上へ。例：$(3,1)\!\to\!(1,-1)$、$(-2,-1)\!\to\!(0,0)$（核上の点）。</div>
+        <h4>Im / Ker</h4>
+        <div class="mbox">$\mathrm{Im}f=\langle(1,-1)\rangle$（直線 $y=-x$）<br>$\mathrm{Ker}f:\ x-2y=0$（直線 $y=\tfrac12x$, 方向 $(2,1)$）</div>
+      </div>
+      <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
+    </div>
+
+    <div class="problem" data-id="q1_2023">
+      <div class="phead"><span class="pno">2023年度 問1</span><span class="badge real">過去問（実物）</span><span class="badge algebra">プロット+Ker</span></div>
+      <div class="stmt">$A=\begin{pmatrix}2&2\\1&1\end{pmatrix}$ の写像で8点をプロットし、核 $\mathrm{Ker}$ を求めよ。</div>
+      <button class="reveal">解答・解説を見る ▼</button>
+      <div class="solution">
+        <h4>分解</h4>
+        <div class="mbox">$\begin{pmatrix}2&2\\1&1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=(x+y)\begin{pmatrix}2\\1\end{pmatrix}$</div>
+        <div class="mbox">$\mathrm{Im}f=\langle(2,1)\rangle$（$y=\tfrac12x$）　$\mathrm{Ker}f:\ 2x+2y=0$（$y=-x$）</div>
+        <div class="explain">$x+y=0$ の点（$(1,-1)$ 等）は原点へ。各点 $s=x+y$ を出して $(2s,s)$ に打つ。</div>
+      </div>
+      <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
+    </div>
+
+    <!-- ================= ② ================= -->
+    <h2 class="sec-title" id="q2">② 連立1次方程式の一般解 <span class="pri p1">P1・隔年で出る</span></h2>
+    <p class="sec-sub">一般解を「特殊解 ＋ 同伴な同次方程式の基本解の1次結合」の形で書く。形式指定を守るのが得点のカギ。</p>
+
+    <div class="infobox">
+      <h2>解き方テンプレ</h2>
+      <ol>
+        <li>拡大係数行列を<b>掃き出し</b>で階段行列に。</li>
+        <li>先頭1が立たない列の変数（自由変数）に $s,t,\dots$ を置く。</li>
+        <li>$\boldsymbol x=\boldsymbol x_0+s\boldsymbol u_1+t\boldsymbol u_2$ に整理。$\boldsymbol x_0$＝特殊解、$\boldsymbol u_i$＝基本解（本数＝自由変数の数＝$n-\mathrm{rank}$）。</li>
+        <li>検算：$\boldsymbol x_0$ を代入して右辺一致、$\boldsymbol u_i$ を代入して $0$。</li>
+      </ol>
+    </div>
+
+    <div class="problem" data-id="q2_2025">
+      <div class="phead"><span class="pno">2025年度 問2</span><span class="badge real">過去問（実物）</span><span class="badge write">一般解</span></div>
+      <div class="stmt">次を解き、一般解を「特殊解＋基本解の1次結合の和」で表せ。
+        <div class="mbox">$\begin{cases}\phantom{-}x-y-z+2u=0\\-x-y+2z-2u=2\\\phantom{-}x-y-2z+2u=-2\\\phantom{-}x-y-5z+2u=-8\end{cases}$</div>
+      </div>
+      <div class="paper">✍️ 差をとって $z,y,x$ を確定 → 自由変数 $u$</div>
+      <button class="reveal">解答・解説を見る ▼</button>
+      <div class="solution">
+        <h4>掃き出し</h4>
+        <div class="explain">第3式−第1式 → $-z=-2$ すなわち $z=2$。第4式−第1式 → $-4z=-8$（同じく $z=2$、重複）。<br>第1式+第2式 → $-2y+z=2$ → $y=0$。第1式より $x=y+z-2u=2-2u$。自由変数は $u=t$ の1個。</div>
+        <h4>一般解</h4>
+        <div class="mbox">$\begin{pmatrix}x\\y\\z\\u\end{pmatrix}=\underbrace{\begin{pmatrix}2\\0\\2\\0\end{pmatrix}}_{\text{特殊解}}+t\underbrace{\begin{pmatrix}-2\\0\\0\\1\end{pmatrix}}_{\text{基本解}}\quad(t\in\mathbb R)$</div>
+        <div class="explain">検算：特殊解を4式に代入 → $(0,2,-2,-8)$ ✓、基本解は全式で $0$ ✓。</div>
+      </div>
+      <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
+    </div>
+
+    <div class="problem" data-id="q2_2023">
+      <div class="phead"><span class="pno">2023年度 問2</span><span class="badge real">過去問（実物）</span><span class="badge write">一般解</span></div>
+      <div class="stmt">次を解き、一般解を規定の形で表せ（未知数5・式3）。
+        <div class="mbox">$\begin{cases}-x_1+x_2+x_3+2x_4-x_5=1\\-x_1+2x_2+x_3-x_4+x_5=1\\\phantom{-}x_1-x_2-x_3-x_4-x_5=-4\end{cases}$</div>
+      </div>
+      <button class="reveal">解答・解説を見る ▼</button>
+      <div class="solution">
+        <h4>掃き出し</h4>
+        <div class="explain">第3式+第1式 → $x_4-2x_5=-3$。第2式−第1式 → $x_2-3x_4+2x_5=0$。自由変数 $x_3=s,\ x_5=t$。<br>$x_4=-3+2t$、$x_2=-9+4t$、$x_1=x_2+x_3+2x_4-x_5-1=-16+s+7t$。</div>
+        <div class="mbox">$\boldsymbol x=\begin{pmatrix}-16\\-9\\0\\-3\\0\end{pmatrix}+s\begin{pmatrix}1\\0\\1\\0\\0\end{pmatrix}+t\begin{pmatrix}7\\4\\0\\2\\1\end{pmatrix}$</div>
+        <div class="explain">特殊解の代入結果 $(1,1,-4)$ ✓。自由変数は $5-\mathrm{rank}=5-3=2$ 個。</div>
+      </div>
+      <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
+    </div>
+
+    <!-- ================= ③ ================= -->
+    <h2 class="sec-title" id="q3">③ 一次結合で表す <span class="pri p1">P1・毎年＋罠</span></h2>
+    <p class="sec-sub">$\boldsymbol a,\boldsymbol b$ を $\boldsymbol a_1,\boldsymbol a_2,\boldsymbol a_3$ の一次結合で表す。基底は<b>わざと一次従属</b>にしてあり、片方は「表せない」が正解。</p>
+
+    <div class="miss">🚨 <b>3年連続の罠</b>：$\boldsymbol a$ は表せる（表し方は無数、1つ書けばOK）が、$\boldsymbol b$ は<b>連立が矛盾して表せない</b>。「計算ミスかな？」とやり直すのが最大の時間ロス。矛盾（$0=1$ 型）が出たら堂々と「表せない」と書く。</div>
+
+    <div class="problem" data-id="q3_2025">
+      <div class="phead"><span class="pno">2025年度 問3</span><span class="badge real">過去問（実物）</span><span class="badge write">一次結合</span></div>
+      <div class="stmt">$\boldsymbol a=(1,-1,0)$, $\boldsymbol b=(0,3,1)$ を $\boldsymbol a_1=(1,-1,2)$, $\boldsymbol a_2=(1,-1,1)$, $\boldsymbol a_3=(1,-1,3)$ の一次結合で表せ。</div>
+      <div class="paper">✍️ 3ベクトルの第1・2成分が全部 $(1,-1)$ に注目</div>
+      <button class="reveal">解答・解説を見る ▼</button>
+      <div class="solution">
+        <h4>観察が最速</h4>
+        <div class="explain">$\boldsymbol a_1,\boldsymbol a_2,\boldsymbol a_3$ はどれも第1・2成分が $(1,-1)$。よってどんな結合も「第2成分 $=$ −第1成分」になる。</div>
+        <h4>$\boldsymbol a=(1,-1,0)$ → 表せる</h4>
+        <div class="explain">条件 $c_1+c_2+c_3=1$、第3成分 $2c_1+c_2+3c_3=0$。差から $c_1+2c_3=-1$。$c_3=0$ とすると $c_1=-1,c_2=2$：</div>
+        <div class="mbox">$\boldsymbol a=-\boldsymbol a_1+2\boldsymbol a_2$　（検算 $-(1,-1,2)+2(1,-1,1)=(1,-1,0)$ ✓）</div>
+        <h4>$\boldsymbol b=(0,3,1)$ → 表せない</h4>
+        <div class="explain">第1成分から $c_1+c_2+c_3=0$。しかし第2成分は $-(c_1+c_2+c_3)=3$、つまり $0=3$ で<b>矛盾</b>。$\boldsymbol b$ は「第2成分 $=$ −第1成分」の平面に乗っていないので<b>表せない</b>。</div>
+      </div>
+      <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
+    </div>
+
+    <div class="problem" data-id="q3_2024">
+      <div class="phead"><span class="pno">2024年度 問3</span><span class="badge real">過去問（実物）</span><span class="badge write">一次結合</span></div>
+      <div class="stmt">$\boldsymbol a=(2,-1,1)$, $\boldsymbol b=(-1,1,1)$ を $\boldsymbol a_1=(1,-1,0)$, $\boldsymbol a_2=(-1,0,-1)$, $\boldsymbol a_3=(-1,-1,-2)$ の一次結合で表せ。</div>
+      <button class="reveal">解答・解説を見る ▼</button>
+      <div class="solution">
+        <h4>$\boldsymbol a$ → 表せる</h4>
+        <div class="explain">連立 $c_1-c_2-c_3=2,\ -c_1-c_3=-1,\ -c_2-2c_3=1$。第2式より $c_1=1-c_3$、代入で第1式と第3式が一致（1本消える＝従属）。$c_3=0$ で $c_1=1,c_2=-1$：</div>
+        <div class="mbox">$\boldsymbol a=\boldsymbol a_1-\boldsymbol a_2$　（検算 $(1,-1,0)-(-1,0,-1)=(2,-1,1)$ ✓）</div>
+        <h4>$\boldsymbol b$ → 表せない</h4>
+        <div class="explain">同様に進めると第1式から $-c_2-2c_3=0$、第3式は $-c_2-2c_3=1$ で<b>矛盾</b>。∴ 表せない。</div>
+      </div>
+      <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
+    </div>
+
+    <div class="problem" data-id="q3_2023">
+      <div class="phead"><span class="pno">2023年度 問3</span><span class="badge real">過去問（実物）</span><span class="badge write">一次結合</span></div>
+      <div class="stmt">$\boldsymbol a=(1,-4,-1)$, $\boldsymbol b=(0,-1,0)$ を $\boldsymbol a_1=(1,-2,1)$, $\boldsymbol a_2=(-1,1,-2)$, $\boldsymbol a_3=(2,-3,3)$ の一次結合で表せ。</div>
+      <button class="reveal">解答・解説を見る ▼</button>
+      <div class="solution">
+        <h4>$\boldsymbol a$ → 表せる</h4>
+        <div class="explain">第1式+第2式 → $c_1=3-c_3$、第1式から $c_2=2+c_3$。第3式は恒等成立（従属）。$c_3=0$：</div>
+        <div class="mbox">$\boldsymbol a=3\boldsymbol a_1+2\boldsymbol a_2$　（検算 $3(1,-2,1)+2(-1,1,-2)=(1,-4,-1)$ ✓）</div>
+        <h4>$\boldsymbol b$ → 表せない</h4>
+        <div class="explain">$c_1=1-c_3,\ c_2=1+c_3$ が出るが第3式に入れると $-1=0$ の<b>矛盾</b>。∴ 表せない。</div>
+      </div>
+      <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
+    </div>
+
+    <!-- ================= ⑥ ================= -->
+    <h2 class="sec-title" id="q6">⑥ 直交補空間 $V^\perp$ <span class="pri p1">P1・24-25連続</span></h2>
+    <p class="sec-sub">条件式で定義された部分空間 $V$ の直交補空間を求める。$V$ が「$A\boldsymbol x=\boldsymbol0$」型なら係数ベクトルが張る空間がそのまま $V^\perp$。</p>
+
+    <div class="infobox">
+      <h2>解き方テンプレ</h2>
+      <ol>
+        <li>$V$ をパラメータ表示して基底を出す。</li>
+        <li>$V^\perp=\{\boldsymbol y:\boldsymbol y\cdot\boldsymbol v=0\ (\forall \boldsymbol v\in V\text{の基底})\}$ を連立で解く。</li>
+        <li><b>ショートカット</b>：$V=\{A\boldsymbol x=\boldsymbol0\}$ なら $V^\perp=$ 行ベクトルが張る空間。</li>
+        <li>次元チェック $\dim V+\dim V^\perp=n$。</li>
+      </ol>
+    </div>
+
+    <div class="problem" data-id="q6_2025">
+      <div class="phead"><span class="pno">2025年度 問4</span><span class="badge real">過去問（実物）</span><span class="badge write">直交補空間</span></div>
+      <div class="stmt">$V=\{(x_1,x_2,x_3)\in\mathbb R^3;\ 2x_1-2x_2+x_3=0,\ x_1-2x_2+2x_3=0\}$ の直交補空間 $V^\perp$ を求めよ。</div>
+      <div class="paper">✍️ 係数ベクトル2本がそのまま $V^\perp$ の基底</div>
+      <button class="reveal">解答・解説を見る ▼</button>
+      <div class="solution">
+        <h4>$V$ を求める</h4>
+        <div class="explain">2式の差 → $x_1-x_3=0$ すなわち $x_1=x_3=t$。第2式に代入 → $x_2=\tfrac32t$。$t=2s$ とすると：</div>
+        <div class="mbox">$V=\langle(2,3,2)\rangle,\quad \dim V=1$</div>
+        <h4>$V^\perp$（ショートカット）</h4>
+        <div class="mbox">$V^\perp=\langle(2,-2,1),\ (1,-2,2)\rangle,\quad \dim V^\perp=2$</div>
+        <div class="explain">検算：$(2,-2,1)\cdot(2,3,2)=4-6+2=0$ ✓、$(1,-2,2)\cdot(2,3,2)=2-6+4=0$ ✓。$1+2=3$ ✓。</div>
+      </div>
+      <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
+    </div>
+
+    <div class="problem" data-id="q6_2024">
+      <div class="phead"><span class="pno">2024年度 問4</span><span class="badge real">過去問（実物）</span><span class="badge write">直交補空間</span></div>
+      <div class="stmt">$V=\{(x_1,x_2,x_3)\in\mathbb R^3;\ x_1+x_3=0,\ x_1-x_2=0\}$ の直交補空間 $V^\perp$ を求めよ。</div>
+      <button class="reveal">解答・解説を見る ▼</button>
+      <div class="solution">
+        <h4>$V$</h4>
+        <div class="explain">$x_1=t$ とすると $x_2=t,\ x_3=-t$。</div>
+        <div class="mbox">$V=\langle(1,1,-1)\rangle,\quad \dim V=1$</div>
+        <h4>$V^\perp$</h4>
+        <div class="explain">$(1,1,-1)$ と直交 ⇔ $y_1+y_2-y_3=0$。$y_2=s,y_3=t$ で $y_1=-s+t$：</div>
+        <div class="mbox">$V^\perp=\langle(-1,1,0),\ (1,0,1)\rangle,\quad \dim V^\perp=2$（$1+2=3$ ✓）</div>
+      </div>
+      <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
+    </div>
+
+    <!-- ================= ⑦ ================= -->
+    <h2 class="sec-title" id="q7">⑦ 行列の対角化 <span class="pri p1">P1・2025新出</span></h2>
+    <p class="sec-sub">固有値・固有ベクトルを求め、変換行列 $P$ で対角化する。2025年に新登場したので2026も要警戒。</p>
+
+    <div class="infobox">
+      <h2>解き方テンプレ</h2>
+      <ol>
+        <li>固有方程式 $\det(A-\lambda I)=0$ を解く（3次は整数解を代入で探す）。</li>
+        <li>各 $\lambda_i$ で $(A-\lambda_i I)\boldsymbol x=\boldsymbol0$ を解いて固有ベクトル $\boldsymbol p_i$。</li>
+        <li>固有値が全て異なれば<b>対角化可能</b>（重解は固有ベクトルが次元分とれるか確認）。</li>
+        <li>$P=[\boldsymbol p_1\,\boldsymbol p_2\,\boldsymbol p_3]$ とすると $P^{-1}AP=\mathrm{diag}(\lambda_1,\lambda_2,\lambda_3)$。</li>
+        <li>検算は $A\boldsymbol p_i=\lambda_i\boldsymbol p_i$（掛けるだけ）＋ $\sum\lambda=\mathrm{tr}A$, $\prod\lambda=\det A$。</li>
+      </ol>
+    </div>
+
+    <div class="problem" data-id="q7_2025">
+      <div class="phead"><span class="pno">2025年度 問5</span><span class="badge real">過去問（実物）</span><span class="badge new">新出</span></div>
+      <div class="stmt">$A=\begin{pmatrix}6&4&-4\\-3&-2&3\\5&4&-3\end{pmatrix}$ が対角化可能ならば変換の行列を求めて対角化せよ。</div>
+      <div class="paper">✍️ 固有値 → 各固有ベクトル → $P$ を組む → 検算</div>
+      <button class="reveal">解答・解説を見る ▼</button>
+      <div class="solution">
+        <h4>固有値</h4>
+        <div class="mbox">$\det(A-\lambda I)=-(\lambda-1)(\lambda-2)(\lambda+2)=0\ \Rightarrow\ \lambda=1,2,-2$</div>
+        <div class="explain">3つとも相異なるので<b>対角化可能</b>。検算：$1+2-2=1=\mathrm{tr}A\,(6-2-3)$ ✓。</div>
+        <h4>固有ベクトル</h4>
+        <div class="explain">$\lambda=1$: $(A-I)\boldsymbol x=0$ → $x_1=0,\ x_2=x_3$ → $\boldsymbol p_1=(0,1,1)$<br>
+        $\lambda=2$: $(A-2I)\boldsymbol x=0$ → $x_2=0,\ x_1=x_3$ → $\boldsymbol p_2=(1,0,1)$<br>
+        $\lambda=-2$: $(A+2I)\boldsymbol x=0$ → $x_3=x_1,\ x_2=-x_1$ → $\boldsymbol p_3=(1,-1,1)$</div>
+        <h4>結論</h4>
+        <div class="mbox">$P=\begin{pmatrix}0&1&1\\1&0&-1\\1&1&1\end{pmatrix}\ \Rightarrow\ P^{-1}AP=\begin{pmatrix}1&0&0\\0&2&0\\0&0&-2\end{pmatrix}$</div>
+        <div class="explain">検算（掛け算のみ）：$A\boldsymbol p_1=(0,1,1)=1\boldsymbol p_1$ ✓、$A\boldsymbol p_2=(2,0,2)=2\boldsymbol p_2$ ✓、$A\boldsymbol p_3=(-2,2,-2)=-2\boldsymbol p_3$ ✓。<br><b>対角成分の並びは $P$ の列の順番どおり</b>。ズレると減点。</div>
+      </div>
+      <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
+    </div>
+
+    <!-- ================= ④ ================= -->
+    <h2 class="sec-title" id="q4">④ グラム・シュミットの直交化 <span class="pri p2">P2・保険（復活警戒）</span></h2>
+    <p class="sec-sub">23・24年は一字一句同じ問題。25年は姿を消したが、ALA側でも使うので型は必ず確保。</p>
+
+    <div class="infobox">
+      <h2>アルゴリズム（これだけ暗記）</h2>
+      <div class="mbox">$\boldsymbol u_1=\boldsymbol x_1,\quad \boldsymbol e_1=\dfrac{\boldsymbol u_1}{\|\boldsymbol u_1\|}$<br>
+      $\boldsymbol u_2=\boldsymbol x_2-(\boldsymbol x_2\!\cdot\!\boldsymbol e_1)\boldsymbol e_1,\quad \boldsymbol e_2=\dfrac{\boldsymbol u_2}{\|\boldsymbol u_2\|}$<br>
+      $\boldsymbol u_3=\boldsymbol x_3-(\boldsymbol x_3\!\cdot\!\boldsymbol e_1)\boldsymbol e_1-(\boldsymbol x_3\!\cdot\!\boldsymbol e_2)\boldsymbol e_2,\quad \boldsymbol e_3=\dfrac{\boldsymbol u_3}{\|\boldsymbol u_3\|}$</div>
+      <p style="margin-bottom:0">「既に作った $\boldsymbol e_i$ 方向の射影を引いて残りを正規化」の繰り返し。途中 $\boldsymbol u_k=\boldsymbol0$ なら元が一次従属。</p>
+    </div>
+
+    <div class="problem" data-id="q4_2324">
+      <div class="phead"><span class="pno">2023 = 2024年度 問4</span><span class="badge real">過去問（実物・同一）</span><span class="badge write">直交化</span></div>
+      <div class="stmt">$\boldsymbol x_1=(1,0,0),\ \boldsymbol x_2=(1,1,0),\ \boldsymbol x_3=(1,1,1)$ から $\mathbb R^3$ の正規直交基底を作れ。</div>
+      <div class="paper">✍️ 途中式を書かないと0点。手順を再現</div>
+      <button class="reveal">解答・解説を見る ▼</button>
+      <div class="solution">
+        <div class="explain">$\boldsymbol u_1=(1,0,0)$, $\boldsymbol e_1=(1,0,0)$。<br>
+        $\boldsymbol x_2\!\cdot\!\boldsymbol e_1=1$ → $\boldsymbol u_2=(1,1,0)-(1,0,0)=(0,1,0)$, $\boldsymbol e_2=(0,1,0)$。<br>
+        $\boldsymbol x_3\!\cdot\!\boldsymbol e_1=1,\ \boldsymbol x_3\!\cdot\!\boldsymbol e_2=1$ → $\boldsymbol u_3=(1,1,1)-(1,0,0)-(0,1,0)=(0,0,1)$, $\boldsymbol e_3=(0,0,1)$。</div>
+        <div class="mbox">正規直交基底：$\{(1,0,0),(0,1,0),(0,0,1)\}$（標準基底）</div>
+        <div class="explain">最後に「$\boldsymbol e_i\cdot\boldsymbol e_j=\delta_{ij}$ を満たす」と一言添えると丁寧。</div>
+      </div>
+      <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
+    </div>
+
+    <div class="problem" data-id="q4_practice">
+      <div class="phead"><span class="pno">数字替え練習</span><span class="badge algebra">類題</span><span class="badge write">直交化</span></div>
+      <div class="stmt">$\boldsymbol x_1=(1,1,0),\ \boldsymbol x_2=(1,0,1),\ \boldsymbol x_3=(0,1,1)$ を直交化せよ（分数が出るタイプ）。</div>
+      <button class="reveal">解答・解説を見る ▼</button>
+      <div class="solution">
+        <div class="explain">$\boldsymbol u_1=(1,1,0),\ \|\boldsymbol u_1\|=\sqrt2,\ \boldsymbol e_1=\tfrac1{\sqrt2}(1,1,0)$。<br>
+        $\boldsymbol x_2\!\cdot\!\boldsymbol e_1=\tfrac1{\sqrt2}$ → $\boldsymbol u_2=(\tfrac12,-\tfrac12,1),\ \boldsymbol e_2=\tfrac1{\sqrt6}(1,-1,2)$。<br>
+        $\boldsymbol u_3=(-\tfrac23,\tfrac23,\tfrac23),\ \boldsymbol e_3=\tfrac1{\sqrt3}(-1,1,1)$。</div>
+        <div class="explain">Boyd の ex5.6 もこの形式。$\boldsymbol u_k=\boldsymbol0$ になったら「一次従属」と判定して終了（早期終了 ex5.8）。</div>
+      </div>
+      <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
+    </div>
+
+    <!-- ================= ⑤ ================= -->
+    <h2 class="sec-title" id="q5">⑤ 線形写像の Im/Ker 次元と基底 <span class="pri p2">P2・保険</span></h2>
+    <p class="sec-sub">$3\times4$ 行列で $f:\mathbb R^4\to\mathbb R^3$。掃き出し→rank→次元定理→基底。25年は①に統合されたが単独出題に備える。</p>
+
+    <div class="miss">⚠️ <b>Im の基底は「掃き出し後の列」ではなく「元の $A$ の列」</b>。行変形は列空間を変えるため。ここが最頻の減点ポイント。</div>
+
+    <div class="problem" data-id="q5_2024">
+      <div class="phead"><span class="pno">2024年度 問5</span><span class="badge real">過去問（実物）</span><span class="badge write">Im/Ker</span></div>
+      <div class="stmt">$A=\begin{pmatrix}1&-1&0&0\\0&1&1&-1\\-1&0&-1&1\end{pmatrix}$、$f(\boldsymbol x)=A\boldsymbol x$。$\mathrm{Im}f$・$\mathrm{Ker}f$ の次元と1組の基底を求めよ。</div>
+      <button class="reveal">解答・解説を見る ▼</button>
+      <div class="solution">
+        <h4>掃き出し</h4>
+        <div class="mbox">$A\to\begin{pmatrix}1&-1&0&0\\0&1&1&-1\\0&0&0&0\end{pmatrix},\quad \mathrm{rank}=2$</div>
+        <h4>Im f（次元2, 基底は元の第1・2列）</h4>
+        <div class="mbox">$\Big\{(1,0,-1),\ (-1,1,0)\Big\}$</div>
+        <h4>Ker f（次元 $4-2=2$）</h4>
+        <div class="explain">$x_3=s,x_4=t$ とすると $x_2=-s+t,\ x_1=x_2=-s+t$：</div>
+        <div class="mbox">$\Big\{(-1,-1,1,0),\ (1,1,0,1)\Big\}$</div>
+        <div class="explain">検算：$A(-1,-1,1,0)^T=0$ ✓, $A(1,1,0,1)^T=0$ ✓, $2+2=4$ ✓。</div>
+      </div>
+      <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
+    </div>
+
+    <div class="problem" data-id="q5_2023">
+      <div class="phead"><span class="pno">2023年度 問5</span><span class="badge real">過去問（実物）</span><span class="badge write">Im/Ker</span></div>
+      <div class="stmt">$A=\begin{pmatrix}1&0&-2&1\\4&1&-6&3\\1&1&0&0\end{pmatrix}$ の $\mathrm{Im}f$・$\mathrm{Ker}f$ の次元と基底を求めよ。</div>
+      <button class="reveal">解答・解説を見る ▼</button>
+      <div class="solution">
+        <div class="explain">掃き出し：第2行−4×第1行 $=(0,1,2,-1)$、第3行−第1行 $=(0,1,2,-1)$、差で0行 → rank $=2$。</div>
+        <div class="mbox">$\mathrm{Im}f:\ \dim2,\ \{(1,4,1),(0,1,1)\}$（元の第1・2列）<br>$\mathrm{Ker}f:\ \dim2,\ \{(2,-2,1,0),(-1,1,0,1)\}$</div>
+        <div class="explain">$x_3=s,x_4=t$ で $x_2=-2s+t,\ x_1=2s-t$。</div>
+      </div>
+      <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
+    </div>
+
+    <!-- ================= ALA ================= -->
+    <h2 class="sec-title" id="ala">ALA（Boyd「最適化数学」）パート <span class="pri p3">P3・課題の類題</span></h2>
+    <p class="sec-sub">「未知の問題は滅多に出ない」方針。毎週の課題 ex1〜ex-7th の類題がそのまま出る。公式と各週テーマだけ押さえる。持ち込む自分のレポートが最強。</p>
+
+    <div class="cheat">
+      <h3>🪙 ALA 公式チートシート</h3>
+      <ul>
+        <li><b>ノルム/距離/角度</b>：$\|\boldsymbol x\|=\sqrt{\boldsymbol x^T\boldsymbol x}$、距離 $=\|\boldsymbol a-\boldsymbol b\|$、$\theta=\arccos\frac{\boldsymbol a^T\boldsymbol b}{\|\boldsymbol a\|\|\boldsymbol b\|}$、$\|\boldsymbol a\pm\boldsymbol b\|^2=\|\boldsymbol a\|^2\pm2\boldsymbol a^T\boldsymbol b+\|\boldsymbol b\|^2$。</li>
+        <li><b>QR分解</b>：$A=QR$、$Q^TQ=I$（列が正規直交＝GSの結果）、$R$ は上三角。検算問題は $QR=A$ と $Q^TQ=I$ を掛けて確認。</li>
+        <li><b>擬似逆行列</b>（縦長・列独立）：$A^\dagger=(A^TA)^{-1}A^T=R^{-1}Q^T$（左逆）。横長は $A^\dagger=A^T(AA^T)^{-1}$（右逆）。</li>
+        <li><b>最小二乗</b>：$\min\|A\boldsymbol x-\boldsymbol b\|^2$ の解は $\hat{\boldsymbol x}=(A^TA)^{-1}A^T\boldsymbol b=A^\dagger\boldsymbol b$（正規方程式 $A^TA\hat{\boldsymbol x}=A^T\boldsymbol b$）。</li>
+        <li><b>状態遷移</b>：$\boldsymbol x_{t+1}=A\boldsymbol x_t$ → $\boldsymbol x_3=A^2\boldsymbol x_1$（感染症 fig9.5）。</li>
+        <li><b>ムーアの法則</b>（ex13.3）：$\log_{10}y\approx\theta_1+\theta_2(t-1970)$ を最小二乗で当てはめ。$\theta_2\approx0.15$ → 約2年で2倍。</li>
+      </ul>
+    </div>
+
+    <div class="infobox">
+      <h2>週別テーマ（d1〜d7）</h2>
+      <ul>
+        <li><b>d1 ベクトルの例</b>(ch1)：内積・線形結合・単位ベクトル。ex1.4,1.5,1.10,1.11,1.13</li>
+        <li><b>d2 回帰</b>(ch2)：$\hat y=\boldsymbol x^T\boldsymbol\beta+v$（家の価格）。線形関数の性質</li>
+        <li><b>d3 ノルム・角度・GS</b>(ch3,5)：最近傍（ex3.11 電子カルテ）、グラム・シュミット</li>
+        <li><b>d4 行列の例</b>(ch6-9)：ブロック行列、隣接行列、状態遷移</li>
+        <li><b>d5 行列積・QR</b>(ch10)：$(AB)_{ij}=\sum_k A_{ik}B_{kj}$、べき、冪零、巡回行列</li>
+        <li><b>d6 逆行列・擬似逆</b>(ch11)：優/劣決定、$A^\dagger$ の確認</li>
+        <li><b>d7 最小二乗</b>(ch12-14)：当てはめ、ムーアの法則</li>
+      </ul>
+    </div>
+
+    <div class="problem" data-id="ala_pc">
+      <div class="phead"><span class="pno">持ち込みPC用</span><span class="badge algebra">検算</span></div>
+      <div class="stmt">計算が合っているか不安なとき、Python (numpy) で一発検算できる（答案は手計算過程を書くこと。Pythonは検算専用）。</div>
+      <button class="reveal">スニペットを見る ▼</button>
+      <div class="solution">
+        <div class="algebra">import numpy as np
+A = np.array([[6,4,-4],[-3,-2,3],[5,4,-3]])
+
+np.linalg.matrix_rank(A)        <span style="color:#8ea0c0"># rank</span>
+np.linalg.inv(A)                <span style="color:#8ea0c0"># 逆行列</span>
+np.linalg.eig(A)                <span style="color:#8ea0c0"># 固有値・固有ベクトル（対角化）</span>
+np.linalg.qr(A)                 <span style="color:#8ea0c0"># QR分解</span>
+np.linalg.lstsq(A,b,rcond=None) <span style="color:#8ea0c0"># 最小二乗</span>
+np.linalg.pinv(A)               <span style="color:#8ea0c0"># 擬似逆行列</span></div>
+      </div>
+      <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
+    </div>
+
+    <!-- ================= CHECK ================= -->
+    <h2 class="sec-title" id="check">最終チェック＆当日</h2>
+    <div class="infobox cyg">
+      <h2>✅ 持ち物・立ち回り</h2>
+      <ul>
+        <li><b>ボールペン</b>（加点対象！過去年度は +5点／方眼紙 +1点・ペン +1点）＋予備。</li>
+        <li>このページの印刷 or PC（充電）／ノート・自分のレポート・テキスト（<b>持ち込み可</b>）。</li>
+        <li>各問<b>最後に検算</b>：代入して戻るか・次元が合うか・$A\boldsymbol p=\lambda\boldsymbol p$ か。</li>
+        <li>詰まったら1問7分で見切って次へ。5問×20点、部分点を全問から拾う。</li>
+        <li><b>睡眠は最低2時間</b>。徹夜より、寝て朝に見直すほうが点は出る。</li>
+      </ul>
+    </div>
+    <div class="cheat">
+      <h3>🎯 出る確率が高い順（2026予想）</h3>
+      <ul>
+        <li>①写像+Im/Ker、③一次結合、⑥直交補空間 … <b>ほぼ確定</b></li>
+        <li>②連立の一般解 … 高い（隔年で登場）</li>
+        <li>⑦対角化 or ④グラム・シュミット … <b>どちらか</b>が5問目。両方やっておけば穴なし</li>
+      </ul>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  var KEY = 'math_final_cram_v1';
+  var store = {};
+  try{ store = JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ store = {}; }
+  function save(s){ try{ localStorage.setItem(KEY, JSON.stringify(s)); }catch(e){} }
+
+  // ---- 試験日時（下の new Date(...) を実際の日時に変更可）----
+  var target = new Date(2026, 6, 23, 9, 0, 0); // 2026-07-23 09:00 （暫定・要変更）
+  var cd = document.getElementById('countdown');
+  function tick(){
+    var now = new Date();
+    var diff = Math.floor((target - now)/1000);
+    if(diff <= 0){ cd.textContent = '🔥 試験本番！実力を出し切れ'; return; }
+    var h = Math.floor(diff/3600), m = Math.floor((diff%3600)/60);
+    cd.textContent = '⏳ 試験まで ' + h + '時間' + m + '分';
+  }
+  tick(); setInterval(tick, 30000);
+
+  var fill = document.getElementById('progfill');
+  var ptext = document.getElementById('progtext');
+  function updateProgress(){
+    var probs = document.querySelectorAll('.problem');
+    var ok = 0;
+    probs.forEach(function(p){ var s = store[p.dataset.id]; if(s && s.conf === 'ok') ok++; });
+    var pct = probs.length ? Math.round(ok/probs.length*100) : 0;
+    fill.style.width = pct + '%';
+    ptext.textContent = ok + ' / ' + probs.length + ' 「OK」';
+  }
+
+  document.querySelectorAll('.problem').forEach(function(p){
+    var id = p.dataset.id;
+    var s = store[id] || {};
+    p.querySelectorAll('.conf button').forEach(function(b){
+      if(s.conf === b.dataset.v) b.classList.add('active');
+      b.addEventListener('click', function(){
+        store[id] = store[id] || {};
+        store[id].conf = (store[id].conf === b.dataset.v) ? null : b.dataset.v;
+        p.querySelectorAll('.conf button').forEach(function(x){
+          x.classList.toggle('active', x.dataset.v === store[id].conf);
+        });
+        save(store); updateProgress();
+      });
+    });
+  });
+  updateProgress();
+
+  document.querySelectorAll('.reveal').forEach(function(btn){
+    btn.setAttribute('data-label', btn.textContent);
+    btn.addEventListener('click', function(){
+      var box = btn.parentNode.querySelector('.solution');
+      var open = box.classList.toggle('show');
+      btn.textContent = open ? '解答・解説を隠す ▲' : btn.getAttribute('data-label');
+    });
+  });
+
+  document.getElementById('revealAll').addEventListener('click', function(){
+    var anyHidden = [].some.call(document.querySelectorAll('.solution'), function(s){ return !s.classList.contains('show'); });
+    document.querySelectorAll('.solution').forEach(function(s){ s.classList.toggle('show', anyHidden); });
+    document.querySelectorAll('.reveal').forEach(function(b){
+      b.textContent = anyHidden ? '解答・解説を隠す ▲' : b.getAttribute('data-label');
+    });
+    this.textContent = anyHidden ? '全部の解答を隠す' : '全部の解答を表示';
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', function(){
+    if(!confirm('理解度の記録をすべて消去します。よろしいですか？')) return;
+    localStorage.removeItem(KEY);
+    document.querySelectorAll('.conf button').forEach(function(b){ b.classList.remove('active'); });
+    store = {}; updateProgress();
+  });
+
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  var map = {};
+  links.forEach(function(a){ var id = a.getAttribute('href').slice(1); map[id] = a; });
+  var sections = [].slice.call(document.querySelectorAll('.sec-title'));
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(a){ a.classList.remove('active'); });
+          if(map[e.target.id]) map[e.target.id].classList.add('active');
+        }
+      });
+    }, {rootMargin:'-60px 0px -75% 0px', threshold:0});
+    sections.forEach(function(s){ obs.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
