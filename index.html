@@ -98,6 +98,14 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
   .solution .out{font-weight:700; white-space:pre-wrap; font-family:"SF Mono",Menlo,Consolas,monospace; font-size:13px; background:#e4f7ef; padding:8px 12px; border-radius:8px; display:block; margin:6px 0}
   .solution .explain{font-size:13.5px; margin-top:10px}
   .miss{background:#fff5f5; border:1px solid #fecaca; border-radius:10px; padding:10px 14px; margin:10px 0; font-size:13.5px; color:#b91c1c}
+  .beginner{background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:12px 15px; margin-top:14px}
+  .beginner h5{margin:0 0 6px; font-size:13px; color:#b45309; display:flex; align-items:center; gap:6px; letter-spacing:.02em}
+  .beginner p{margin:8px 0; font-size:13.5px; line-height:1.9}
+  .beginner b{color:#92400e}
+  .beginner .q{color:#0f766e; font-weight:700}
+  .beginner ul{margin:6px 0; padding-left:20px; font-size:13.5px; line-height:1.85}
+  .beginner li{margin:4px 0}
+  .beginner .stepline{background:#fff; border-left:3px solid #fbbf24; padding:6px 11px; margin:7px 0; border-radius:0 6px 6px 0; font-size:13px}
   .conf{display:flex; align-items:center; gap:6px; margin-top:14px; flex-wrap:wrap}
   .conf-label{font-size:12px; color:var(--sub)}
   .conf button{font-size:12px; border:1px solid var(--line); background:#fff; color:var(--sub);
@@ -208,6 +216,16 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
         <h4>Im / Ker</h4>
         <div class="mbox">$\mathrm{Im}f:\ \dim=1,\ \text{基底}\{(2,-1)\}\ (\text{直線 }y=-\tfrac12x)$<br>$\mathrm{Ker}f:\ x-y=0,\ \dim=1,\ \text{基底}\{(1,1)\}\ (\text{直線 }y=x)$</div>
         <div class="explain">検算：$\dim\mathrm{Im}+\dim\mathrm{Ker}=1+1=2=$ 定義域の次元 ✓。Ker の直線上の点は全て原点へ写る。</div>
+        <div class="beginner">
+          <h5>🔰 0からわかる解説</h5>
+          <p><span class="q">そもそも何をしてる？</span> 「写像」＝<b>点を別の場所に動かすルール</b>のこと。ここでは行列 $A$ が「動かし方の説明書」で、点 $(x,y)$ を新しい点に移す。行列とベクトルの掛け算は<b>「上の行」「下の行」それぞれで “ヨコに掛けて足す”</b> だけ：$\begin{pmatrix}2&-2\\-1&1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}2x-2y\\-x+y\end{pmatrix}$。</p>
+          <p><span class="q">なぜ直線にまとまる？</span> 上の答え $\begin{pmatrix}2x-2y\\-x+y\end{pmatrix}$ をよく見ると、上は $2(x-y)$、下は $-(x-y)$。つまり<b>両方とも「$x-y$」という同じ数のかたまり</b>でできている。この数を $t=x-y$ と呼べば行き先は必ず $\begin{pmatrix}2t\\-t\end{pmatrix}=t\begin{pmatrix}2\\-1\end{pmatrix}$。$t$ が変わっても向きは $(2,-1)$ のまま長さだけ変わる → <b>全部が1本の直線に乗る</b>。これが「つぶれる」の意味。</p>
+          <ul>
+            <li><b>Im（像）＝行き先の全体</b>。今回は直線 $t(2,-1)$。直線＝1方向だけなので「次元1」、その方向 $(2,-1)$ が「基底」。</li>
+            <li><b>Ker（核）＝原点(0,0)に潰れてしまう点の集まり</b>。行き先が0になるのは $t=x-y=0$ のとき、つまり $x=y$ の点全部。これも直線なので次元1、方向 $(1,1)$。</li>
+          </ul>
+          <p><span class="q">解き方の手順だけ</span>：①$A$ を $(x,y)$ に掛ける →②答えが「（数）×（固定ベクトル）」の形になるので、その固定ベクトルが Im の方向 →③掛けた結果が0になる条件（$x-y=0$）が Ker の直線。</p>
+        </div>
       </div>
       <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
     </div>
@@ -223,6 +241,15 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
         <div class="explain">全点が直線 $y=-x$ 上へ。例：$(3,1)\!\to\!(1,-1)$、$(-2,-1)\!\to\!(0,0)$（核上の点）。</div>
         <h4>Im / Ker</h4>
         <div class="mbox">$\mathrm{Im}f=\langle(1,-1)\rangle$（直線 $y=-x$）<br>$\mathrm{Ker}f:\ x-2y=0$（直線 $y=\tfrac12x$, 方向 $(2,1)$）</div>
+        <div class="beginner">
+          <h5>🔰 0からわかる解説</h5>
+          <p><span class="q">やることは①と全く同じ。</span> $A$ を $(x,y)$ に掛けると $\begin{pmatrix}1&-2\\-1&2\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}x-2y\\-x+2y\end{pmatrix}$。上は $(x-2y)$、下はその符号違い $-(x-2y)$。だから<b>「$x-2y$」という1つの数</b>で全部決まる → 行き先は $t\begin{pmatrix}1\\-1\end{pmatrix}$ の直線。</p>
+          <ul>
+            <li><b>Im</b>＝その直線の方向 $(1,-1)$（＝直線 $y=-x$）。</li>
+            <li><b>Ker</b>＝原点に潰れる点＝行き先を0にする条件 $x-2y=0$（＝直線 $y=\tfrac12x$）。</li>
+          </ul>
+          <p>ポイントは「掛け算の結果を見て、共通のかたまりを見つける」こと。ここでは $x-2y$ がそれ。見つけたらもう終わり。</p>
+        </div>
       </div>
       <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
     </div>
@@ -236,6 +263,15 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
         <div class="mbox">$\begin{pmatrix}2&2\\1&1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=(x+y)\begin{pmatrix}2\\1\end{pmatrix}$</div>
         <div class="mbox">$\mathrm{Im}f=\langle(2,1)\rangle$（$y=\tfrac12x$）　$\mathrm{Ker}f:\ 2x+2y=0$（$y=-x$）</div>
         <div class="explain">$x+y=0$ の点（$(1,-1)$ 等）は原点へ。各点 $s=x+y$ を出して $(2s,s)$ に打つ。</div>
+        <div class="beginner">
+          <h5>🔰 0からわかる解説</h5>
+          <p>これも同じパターン。$\begin{pmatrix}2&2\\1&1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}2x+2y\\x+y\end{pmatrix}$。上は $2(x+y)$、下は $(x+y)$ で、<b>共通のかたまりは「$x+y$」</b>。だから行き先は $s\begin{pmatrix}2\\1\end{pmatrix}$ の直線。</p>
+          <ul>
+            <li><b>Im</b>＝方向 $(2,1)$ の直線（$y=\tfrac12x$）。</li>
+            <li><b>Ker</b>＝原点へ潰れる条件 $x+y=0$（＝直線 $y=-x$）。この上の点、例えば $(1,-1)$ は $s=0$ なので原点に写る。</li>
+          </ul>
+          <p>3年とも同じ「共通のかたまりを見つける→直線が2本(Imの方向とKerの直線)出る」型。掛け算さえ落ち着いてやれば必ず解ける。</p>
+        </div>
       </div>
       <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
     </div>
@@ -267,6 +303,15 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
         <h4>一般解</h4>
         <div class="mbox">$\begin{pmatrix}x\\y\\z\\u\end{pmatrix}=\underbrace{\begin{pmatrix}2\\0\\2\\0\end{pmatrix}}_{\text{特殊解}}+t\underbrace{\begin{pmatrix}-2\\0\\0\\1\end{pmatrix}}_{\text{基本解}}\quad(t\in\mathbb R)$</div>
         <div class="explain">検算：特殊解を4式に代入 → $(0,2,-2,-8)$ ✓、基本解は全式で $0$ ✓。</div>
+        <div class="beginner">
+          <h5>🔰 0からわかる解説</h5>
+          <p><span class="q">「一般解」って何？</span> 連立方程式の答えが1個に決まらず、<b>無数にある</b>ときの「答え全部のまとめ書き」のこと。中学の連立は答えが1組だけだが、ここは式より未知数が多いので<b>自由に選べる部分</b>が残る。</p>
+          <p><span class="q">「特殊解＋基本解」の形って？</span> 答え全体を<b>「代表の1個（特殊解）」＋「そこからズラせる方向（基本解）×自由な数」</b>で書く。例えるなら「駅（特殊解）から、線路の向き（基本解）に好きなだけ進んだ場所すべて」。</p>
+          <div class="stepline">① まず式どうしを引き算・足し算して変数を減らす（これが「掃き出し」）。ここでは第3式−第1式で $z=2$ が判明、次に $y=0$、最後に $x=2-2u$ と芋づる式に決まる。</div>
+          <div class="stepline">② どうしても1個だけ自由に決められない変数が残る（ここでは $u$）。それを $t$ と名付ける＝これが「自由に動かせるツマミ」。</div>
+          <div class="stepline">③ $t=0$ を入れた1個が「特殊解」$(2,0,2,0)$。$t$ を1増やすと答えが $(-2,0,0,1)$ ずつズレる＝これが「基本解」。</div>
+          <p>だから答えは $(2,0,2,0)+t(-2,0,0,1)$。<b>不安なら特殊解を元の式に入れて右辺と合うか確認</b>すれば100%チェックできる。</p>
+        </div>
       </div>
       <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
     </div>
@@ -282,6 +327,14 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
         <div class="explain">第3式+第1式 → $x_4-2x_5=-3$。第2式−第1式 → $x_2-3x_4+2x_5=0$。自由変数 $x_3=s,\ x_5=t$。<br>$x_4=-3+2t$、$x_2=-9+4t$、$x_1=x_2+x_3+2x_4-x_5-1=-16+s+7t$。</div>
         <div class="mbox">$\boldsymbol x=\begin{pmatrix}-16\\-9\\0\\-3\\0\end{pmatrix}+s\begin{pmatrix}1\\0\\1\\0\\0\end{pmatrix}+t\begin{pmatrix}7\\4\\0\\2\\1\end{pmatrix}$</div>
         <div class="explain">特殊解の代入結果 $(1,1,-4)$ ✓。自由変数は $5-\mathrm{rank}=5-3=2$ 個。</div>
+        <div class="beginner">
+          <h5>🔰 0からわかる解説</h5>
+          <p>考え方は前問と同じ。今回は<b>未知数が5個、式が3本</b>。式が足りない分だけ自由に決められる変数が増える：$5-3=2$ 個。だから「ツマミ」が2つ（$s$ と $t$）あり、基本解も2本になる。</p>
+          <div class="stepline">① 式を足し引きして変数を消す（掃き出し）。$x_4,x_2,x_1$ が $s,t$ の式で書けるようになる。</div>
+          <div class="stepline">② 自由に選ぶ変数を $x_3=s,\ x_5=t$ と決める。</div>
+          <div class="stepline">③ $s=t=0$ の1個が特殊解 $(-16,-9,0,-3,0)$。$s$ を1増やすと $(1,0,1,0,0)$、$t$ を1増やすと $(7,4,0,2,1)$ ズレる＝2本の基本解。</div>
+          <p><b>基本解が何本かは「自由変数の数」で決まる</b>と覚えておけば、本数を間違えない。答えの形は $\text{特殊解}+s(\dots)+t(\dots)$。</p>
+        </div>
       </div>
       <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
     </div>
@@ -305,6 +358,12 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
         <div class="mbox">$\boldsymbol a=-\boldsymbol a_1+2\boldsymbol a_2$　（検算 $-(1,-1,2)+2(1,-1,1)=(1,-1,0)$ ✓）</div>
         <h4>$\boldsymbol b=(0,3,1)$ → 表せない</h4>
         <div class="explain">第1成分から $c_1+c_2+c_3=0$。しかし第2成分は $-(c_1+c_2+c_3)=3$、つまり $0=3$ で<b>矛盾</b>。$\boldsymbol b$ は「第2成分 $=$ −第1成分」の平面に乗っていないので<b>表せない</b>。</div>
+        <div class="beginner">
+          <h5>🔰 0からわかる解説</h5>
+          <p><span class="q">「一次結合で表す」って？</span> 材料ベクトル $\boldsymbol a_1,\boldsymbol a_2,\boldsymbol a_3$ を<b>好きな倍率で足し合わせて</b>目標 $\boldsymbol a$ を作れるか、という問題。「$\boldsymbol a=c_1\boldsymbol a_1+c_2\boldsymbol a_2+c_3\boldsymbol a_3$ となる倍率 $c_1,c_2,c_3$ を見つけよ」ということ。レシピの分量を求める感覚。</p>
+          <p><span class="q">なぜ片方は作れない？</span> 材料3本をよく見ると、上2つの成分が全部 $(1,-1)$。<b>どんな倍率で混ぜても、上2つは必ず「上＝○、真ん中＝−○」の関係</b>になる。目標 $\boldsymbol b=(0,3,1)$ は上が0なのに真ん中が3で、この関係を破っている → だから<b>どうやっても作れない＝「表せない」</b>。これが罠の正体。</p>
+          <p><span class="q">手順</span>：①「$c_1\boldsymbol a_1+c_2\boldsymbol a_2+c_3\boldsymbol a_3=$ 目標」を成分ごとに書くと連立方程式ができる →②解く →③倍率が見つかれば「表せる」、$0=3$ のような<b>あり得ない式</b>が出たら「表せない」。<b>矛盾は間違いではなく“答え”</b>なので、出たら自信を持って書く。</p>
+        </div>
       </div>
       <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
     </div>
@@ -319,6 +378,12 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
         <div class="mbox">$\boldsymbol a=\boldsymbol a_1-\boldsymbol a_2$　（検算 $(1,-1,0)-(-1,0,-1)=(2,-1,1)$ ✓）</div>
         <h4>$\boldsymbol b$ → 表せない</h4>
         <div class="explain">同様に進めると第1式から $-c_2-2c_3=0$、第3式は $-c_2-2c_3=1$ で<b>矛盾</b>。∴ 表せない。</div>
+        <div class="beginner">
+          <h5>🔰 0からわかる解説</h5>
+          <p>やることは前問と同じ。「$c_1\boldsymbol a_1+c_2\boldsymbol a_2+c_3\boldsymbol a_3=$ 目標」を成分ごとに書いて連立を解くだけ。</p>
+          <p>今回の材料 $\boldsymbol a_1,\boldsymbol a_2,\boldsymbol a_3$ は<b>実は独立3本に見えて1本が余分</b>（$\boldsymbol a_3$ が他2本で作れてしまう＝「一次従属」）。だから解くと式が1本消えて $c_3$ が自由に選べる → $c_3=0$ と決めれば簡単な倍率が出る。$\boldsymbol a$ は $\boldsymbol a_1-\boldsymbol a_2$ で作れる。</p>
+          <p>一方 $\boldsymbol b$ は解こうとすると $0=1$ 型の<b>あり得ない式</b>が出る＝作れない。<b>「表せる方は倍率を1組書く／表せない方は矛盾を見せて『表せない』と書く」</b>が満点の形。</p>
+        </div>
       </div>
       <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
     </div>
@@ -333,6 +398,11 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
         <div class="mbox">$\boldsymbol a=3\boldsymbol a_1+2\boldsymbol a_2$　（検算 $3(1,-2,1)+2(-1,1,-2)=(1,-4,-1)$ ✓）</div>
         <h4>$\boldsymbol b$ → 表せない</h4>
         <div class="explain">$c_1=1-c_3,\ c_2=1+c_3$ が出るが第3式に入れると $-1=0$ の<b>矛盾</b>。∴ 表せない。</div>
+        <div class="beginner">
+          <h5>🔰 0からわかる解説</h5>
+          <p>3年連続まったく同じ型。材料3本のうち1本が余分（一次従属）なので、$\boldsymbol a$ は表せて $c_3=0$ とすれば $3\boldsymbol a_1+2\boldsymbol a_2$ と簡単な答えになる。$\boldsymbol b$ は解くと $-1=0$ という<b>あり得ない式</b>＝表せない。</p>
+          <p><span class="q">試験でのコツ</span>：$\boldsymbol b$ で計算が合わなくても<b>「自分の計算ミス」ではなく「そういう問題」</b>。矛盾式が出たら即「表せない」で確定。ここで粘って時間を溶かさないのが3年連続の教訓。</p>
+        </div>
       </div>
       <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
     </div>
@@ -363,6 +433,13 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
         <h4>$V^\perp$（ショートカット）</h4>
         <div class="mbox">$V^\perp=\langle(2,-2,1),\ (1,-2,2)\rangle,\quad \dim V^\perp=2$</div>
         <div class="explain">検算：$(2,-2,1)\cdot(2,3,2)=4-6+2=0$ ✓、$(1,-2,2)\cdot(2,3,2)=2-6+4=0$ ✓。$1+2=3$ ✓。</div>
+        <div class="beginner">
+          <h5>🔰 0からわかる解説</h5>
+          <p><span class="q">「直交補空間 $V^\perp$」って？</span> $V$ が空間の中のある「面」や「線」だとして、<b>それと垂直な方向を全部集めた空間</b>のこと。床($V$)に対する「まっすぐ立つ棒の方向全部」が $V^\perp$、みたいなイメージ。</p>
+          <p><span class="q">「直交（垂直）」＝内積が0。</span> 2つのベクトルの<b>内積</b>は「成分どうしを掛けて全部足す」計算。例：$(2,-2,1)\cdot(2,3,2)=2{\cdot}2+(-2){\cdot}3+1{\cdot}2=4-6+2=0$。<b>これが0なら垂直</b>。</p>
+          <p><span class="q">なぜ係数ベクトルがそのまま答え？</span> $V$ は「$2x_1-2x_2+x_3=0$ かつ $x_1-2x_2+2x_3=0$」で定義されている。この式は実は<b>「$(2,-2,1)$ と垂直」かつ「$(1,-2,2)$ と垂直」な点の集まり</b>という意味。だから逆に、この2本の係数ベクトルが張る空間こそ「$V$ と垂直な方向全部」＝$V^\perp$ になる。<b>式の係数を並べるだけ</b>で答えが出る近道。</p>
+          <p>最後に $\dim V+\dim V^\perp=1+2=3$（元の空間の次元）になっているか確認すれば安心。</p>
+        </div>
       </div>
       <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
     </div>
@@ -378,6 +455,14 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
         <h4>$V^\perp$</h4>
         <div class="explain">$(1,1,-1)$ と直交 ⇔ $y_1+y_2-y_3=0$。$y_2=s,y_3=t$ で $y_1=-s+t$：</div>
         <div class="mbox">$V^\perp=\langle(-1,1,0),\ (1,0,1)\rangle,\quad \dim V^\perp=2$（$1+2=3$ ✓）</div>
+        <div class="beginner">
+          <h5>🔰 0からわかる解説</h5>
+          <p>この年は $V$ が「線」（1本のベクトル $(1,1,-1)$ の方向）。その線と垂直な方向を全部集めたのが $V^\perp$。</p>
+          <div class="stepline">① まず $V$ 自体を求める：条件 $x_1+x_3=0,\ x_1-x_2=0$ を満たす点を書き出すと $(t,t,-t)=t(1,1,-1)$。だから $V$ は $(1,1,-1)$ 方向の直線。</div>
+          <div class="stepline">② $V^\perp$＝「$(1,1,-1)$ と内積0」な $\boldsymbol y$ 全部。内積0の式は $y_1+y_2-y_3=0$。</div>
+          <div class="stepline">③ この1本の式を満たすベクトルを2つ見つければ基底完成：$(-1,1,0)$ と $(1,0,1)$。どちらも足すと0になるか確認（$-1+1-0=0$、$1+0-1=0$）✓。</div>
+          <p>「線の $V$（次元1）＋その垂直な面 $V^\perp$（次元2）＝空間全体（次元3）」ときれいに分かれる。</p>
+        </div>
       </div>
       <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
     </div>
@@ -413,6 +498,14 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
         <h4>結論</h4>
         <div class="mbox">$P=\begin{pmatrix}0&1&1\\1&0&-1\\1&1&1\end{pmatrix}\ \Rightarrow\ P^{-1}AP=\begin{pmatrix}1&0&0\\0&2&0\\0&0&-2\end{pmatrix}$</div>
         <div class="explain">検算（掛け算のみ）：$A\boldsymbol p_1=(0,1,1)=1\boldsymbol p_1$ ✓、$A\boldsymbol p_2=(2,0,2)=2\boldsymbol p_2$ ✓、$A\boldsymbol p_3=(-2,2,-2)=-2\boldsymbol p_3$ ✓。<br><b>対角成分の並びは $P$ の列の順番どおり</b>。ズレると減点。</div>
+        <div class="beginner">
+          <h5>🔰 0からわかる解説</h5>
+          <p><span class="q">「対角化」って何が嬉しい？</span> 普通の行列 $A$ は掛けると向きも長さもゴチャゴチャ変える。でも<b>「掛けても向きが変わらず長さだけ○倍になる特別な方向」</b>が存在する。その方向を「固有ベクトル」、○倍の倍率を「固有値」と呼ぶ。この特別な方向を軸に取り直すと $A$ が<b>対角行列（斜めだけに数字）</b>という超シンプルな形になる＝対角化。</p>
+          <div class="stepline">① <b>倍率（固有値）を探す</b>：$\det(A-\lambda I)=0$ という方程式を解く。これは「長さだけ $\lambda$ 倍になる方向が存在する条件」。今回は $\lambda=1,2,-2$ の3つ。</div>
+          <div class="stepline">② <b>各倍率の方向（固有ベクトル）を探す</b>：$\lambda=1$ なら $(A-1{\cdot}I)\boldsymbol x=\boldsymbol 0$ を解く。出てきた $\boldsymbol p_1=(0,1,1)$ が「掛けても向きが変わらず1倍の方向」。同様に $\lambda=2,-2$ の方向も求める。</div>
+          <div class="stepline">③ <b>組み立てる</b>：見つけた3方向を<b>縦に並べた行列</b>が $P$。すると $P^{-1}AP$ が対角行列（斜めに固有値が並ぶ）になる。</div>
+          <p><span class="q">検算が一番ラク</span>：$P^{-1}$ を計算しなくても、$A\boldsymbol p=\lambda\boldsymbol p$（掛けたら $\lambda$ 倍になるか）を確かめるだけでOK。例：$A\boldsymbol p_2=(2,0,2)=2{\times}(1,0,1)$ ✓。<b>並べる順番</b>だけ注意（$P$ の1列目が $\boldsymbol p_1$ なら対角の1番目は $\lambda_1$）。</p>
+        </div>
       </div>
       <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
     </div>
@@ -440,6 +533,16 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
         $\boldsymbol x_3\!\cdot\!\boldsymbol e_1=1,\ \boldsymbol x_3\!\cdot\!\boldsymbol e_2=1$ → $\boldsymbol u_3=(1,1,1)-(1,0,0)-(0,1,0)=(0,0,1)$, $\boldsymbol e_3=(0,0,1)$。</div>
         <div class="mbox">正規直交基底：$\{(1,0,0),(0,1,0),(0,0,1)\}$（標準基底）</div>
         <div class="explain">最後に「$\boldsymbol e_i\cdot\boldsymbol e_j=\delta_{ij}$ を満たす」と一言添えると丁寧。</div>
+        <div class="beginner">
+          <h5>🔰 0からわかる解説</h5>
+          <p><span class="q">何を作りたい？</span> バラバラの向きのベクトルたちから、<b>「互いに直角」で「長さ1」のきれいなベクトル一式</b>（＝正規直交基底）を作り直す作業。方眼紙の縦横みたいな、揃った軸を作るイメージ。</p>
+          <p><span class="q">やり方は「影を引く」だけ。</span> 2本目 $\boldsymbol x_2$ を、すでに作った1本目 $\boldsymbol e_1$ に対して直角にしたい。そこで $\boldsymbol x_2$ の中の<b>「$\boldsymbol e_1$ 方向に伸びている分（影＝射影）」を引き算</b>して消す。残ったものは $\boldsymbol e_1$ と直角になる。3本目は「$\boldsymbol e_1$ の影」と「$\boldsymbol e_2$ の影」の両方を引く。</p>
+          <ul>
+            <li><b>射影（影）</b>＝$(\boldsymbol x\cdot\boldsymbol e)\,\boldsymbol e$。内積 $\boldsymbol x\cdot\boldsymbol e$ が「その方向にどれだけ乗っているか」の量。</li>
+            <li><b>正規化</b>＝ベクトルを自分の長さで割って長さ1にすること（$\boldsymbol e=\boldsymbol u/\|\boldsymbol u\|$）。</li>
+          </ul>
+          <p>この問題は元がキリのいい形なので、影を引くと結局 $(1,0,0),(0,1,0),(0,0,1)$ という一番きれいな軸に戻る。<b>答えが簡単でも、影を引く計算過程を書かないと点にならない</b>ので手順を必ず書く。</p>
+        </div>
       </div>
       <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
     </div>
@@ -453,6 +556,14 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
         $\boldsymbol x_2\!\cdot\!\boldsymbol e_1=\tfrac1{\sqrt2}$ → $\boldsymbol u_2=(\tfrac12,-\tfrac12,1),\ \boldsymbol e_2=\tfrac1{\sqrt6}(1,-1,2)$。<br>
         $\boldsymbol u_3=(-\tfrac23,\tfrac23,\tfrac23),\ \boldsymbol e_3=\tfrac1{\sqrt3}(-1,1,1)$。</div>
         <div class="explain">Boyd の ex5.6 もこの形式。$\boldsymbol u_k=\boldsymbol0$ になったら「一次従属」と判定して終了（早期終了 ex5.8）。</div>
+        <div class="beginner">
+          <h5>🔰 0からわかる解説</h5>
+          <p>手順は前問と全く同じ「影を引いて、長さ1にする」の繰り返し。違うのは<b>数字が割り切れず $\sqrt{}$ や分数が出る</b>こと。ビビらなくてよくて、計算がちょっと長いだけ。</p>
+          <div class="stepline">① $\boldsymbol e_1$＝$\boldsymbol x_1$ を長さ($\sqrt2$)で割る → $\tfrac1{\sqrt2}(1,1,0)$。</div>
+          <div class="stepline">② $\boldsymbol x_2$ から「$\boldsymbol e_1$ 方向の影」を引く → 残りを長さで割ると $\boldsymbol e_2=\tfrac1{\sqrt6}(1,-1,2)$。</div>
+          <div class="stepline">③ $\boldsymbol x_3$ から $\boldsymbol e_1,\boldsymbol e_2$ 両方の影を引く → $\boldsymbol e_3=\tfrac1{\sqrt3}(-1,1,1)$。</div>
+          <p><span class="q">豆知識</span>：もし途中で引き算した残りが $\boldsymbol 0$（ゼロベクトル）になったら、それは「元のベクトルが他ので作れてしまう＝一次従属」の合図。そこで止めてよい。</p>
+        </div>
       </div>
       <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
     </div>
@@ -476,6 +587,14 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
         <div class="explain">$x_3=s,x_4=t$ とすると $x_2=-s+t,\ x_1=x_2=-s+t$：</div>
         <div class="mbox">$\Big\{(-1,-1,1,0),\ (1,1,0,1)\Big\}$</div>
         <div class="explain">検算：$A(-1,-1,1,0)^T=0$ ✓, $A(1,1,0,1)^T=0$ ✓, $2+2=4$ ✓。</div>
+        <div class="beginner">
+          <h5>🔰 0からわかる解説</h5>
+          <p><span class="q">Im と Ker、言葉の意味から。</span> 行列 $A$ は「4次元の入力を3次元の出力に変える機械」。<b>Im（像）＝この機械が出せる出力の全部</b>、<b>Ker（核）＝入れると出力が $\boldsymbol0$ になってしまう入力の全部</b>。「次元と基底を求めよ」＝「その集まりが何本のベクトルで張れるか、その代表ベクトルは何か」。</p>
+          <div class="stepline">① <b>掃き出し</b>で $A$ を階段状に整理し、意味のある行が何本あるか（＝rank）を数える。ここでは rank$=2$。</div>
+          <div class="stepline">② <b>Im の次元＝rank＝2</b>。基底は<u>掃き出す前の元の $A$ の1・2列目</u>。（掃き出した後の列を書くのは間違い！ここが最大の落とし穴）</div>
+          <div class="stepline">③ <b>Ker の次元＝入力の数−rank＝4−2＝2</b>（次元定理）。$A\boldsymbol x=\boldsymbol0$ を解いて、自由に選べる変数 $s,t$ を置くと基底2本が出る。</div>
+          <p>覚え方：「<b>Im は元の列、Ker は方程式を解く</b>」「<b>次元は足すと入力の数(4)になる</b>」。この2つだけで得点できる。</p>
+        </div>
       </div>
       <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
     </div>
@@ -488,6 +607,16 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
         <div class="explain">掃き出し：第2行−4×第1行 $=(0,1,2,-1)$、第3行−第1行 $=(0,1,2,-1)$、差で0行 → rank $=2$。</div>
         <div class="mbox">$\mathrm{Im}f:\ \dim2,\ \{(1,4,1),(0,1,1)\}$（元の第1・2列）<br>$\mathrm{Ker}f:\ \dim2,\ \{(2,-2,1,0),(-1,1,0,1)\}$</div>
         <div class="explain">$x_3=s,x_4=t$ で $x_2=-2s+t,\ x_1=2s-t$。</div>
+        <div class="beginner">
+          <h5>🔰 0からわかる解説</h5>
+          <p>前問とまったく同じ手順。<b>掃き出す→rankを数える→Imは元の列・Kerは方程式を解く</b>。</p>
+          <ul>
+            <li>rank$=2$ なので Im も Ker も次元2。</li>
+            <li><b>Im の基底</b>＝元の $A$ の1・2列目 $\{(1,4,1),(0,1,1)\}$。（掃き出し後の数字ではなく<u>元の列</u>！）</li>
+            <li><b>Ker の基底</b>＝$A\boldsymbol x=\boldsymbol0$ で自由変数 $x_3=s,x_4=t$ を置いて出した2本。</li>
+          </ul>
+          <p>次元チェック $2+2=4$（入力の数）でOK。同じ型を2年分やれば手が勝手に動くようになる。</p>
+        </div>
       </div>
       <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
     </div>
@@ -535,6 +664,16 @@ np.linalg.eig(A)                <span style="color:#8ea0c0"># 固有値・固有
 np.linalg.qr(A)                 <span style="color:#8ea0c0"># QR分解</span>
 np.linalg.lstsq(A,b,rcond=None) <span style="color:#8ea0c0"># 最小二乗</span>
 np.linalg.pinv(A)               <span style="color:#8ea0c0"># 擬似逆行列</span></div>
+        <div class="beginner">
+          <h5>🔰 0からわかる解説</h5>
+          <p>これは計算ツールの早見表。<b>自分で手計算した答えが合っているかの「答え合わせ」用</b>。例えば対角化(⑦)の練習をしたら <code>np.linalg.eig(A)</code> を打つと固有値・固有ベクトルが一瞬で出るので、自分の手計算と照合できる。</p>
+          <ul>
+            <li><code>matrix_rank</code>＝rank（Im/Kerの次元計算に使う数）</li>
+            <li><code>eig</code>＝固有値と固有ベクトル（対角化の答え合わせ）</li>
+            <li><code>qr</code>＝QR分解、<code>pinv</code>＝擬似逆行列（ALAパート）</li>
+          </ul>
+          <p>本番は持ち込み不可で使えないので、あくまで<b>今夜の練習の丸つけ</b>用。手順を体で覚えるのが目的。</p>
+        </div>
       </div>
       <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
     </div>
