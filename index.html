@@ -568,14 +568,14 @@ np.linalg.pinv(A)               <span style="color:#8ea0c0"># 擬似逆行列</s
   function save(s){ try{ localStorage.setItem(KEY, JSON.stringify(s)); }catch(e){} }
 
   // ---- 試験日時（下の new Date(...) を実際の日時に変更可）----
-  var target = new Date(2026, 6, 23, 9, 0, 0); // 2026-07-23 09:00 （暫定・要変更）
+  var target = new Date(2026, 6, 24, 15, 10, 0); // 2026-07-24(金) 15:10 試験開始
   var cd = document.getElementById('countdown');
   function tick(){
     var now = new Date();
     var diff = Math.floor((target - now)/1000);
     if(diff <= 0){ cd.textContent = '🔥 試験本番！実力を出し切れ'; return; }
-    var h = Math.floor(diff/3600), m = Math.floor((diff%3600)/60);
-    cd.textContent = '⏳ 試験まで ' + h + '時間' + m + '分';
+    var d = Math.floor(diff/86400), h = Math.floor((diff%86400)/3600), m = Math.floor((diff%3600)/60);
+    cd.textContent = '⏳ 試験(金15:10)まで ' + (d > 0 ? d + '日' : '') + h + '時間' + m + '分';
   }
   tick(); setInterval(tick, 30000);
 
