@@ -146,7 +146,9 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
   </aside>
 
   <main class="content">
-    <p class="lead">関西学院大学「情報科学のための数学演習(線形代数)」西谷担当 ／ MathEx + MathExALA。過去問 v23.2・v24.2・v25.2 の実物を解析。<b>持ち込み可</b>の試験なので、このページを印刷 or PC で持参して勝つ。</p>
+    <p class="lead">関西学院大学「情報科学のための数学演習(線形代数)」西谷担当 ／ MathEx + MathExALA。過去問 v23.2・v24.2・v25.2 の実物を解析。<b>2026年度は持ち込み不可</b>（講義ページ明記）。手順を体で覚えて臨む。</p>
+
+    <div class="miss">⚠️ <b>重要：2026年度から持ち込み不可</b>。講義ページに「ノート・レポート・テキスト・コピー・パソコン持ち込み可 <b>(26年度は不可)</b>」と明記あり。過去問(23〜25年)は持ち込み可だったが、<u>今年は暗記勝負</u>。このページは試験会場に持ち込めないので、<b>前夜までに手順を反復して頭に入れる</b>教材として使う。「ボールペンで書いたら加点」の記載は残っているので<b>ボールペンは持参</b>（電卓の可否は不明なので教員の指示に従うこと）。</div>
 
     <!-- ================= INTRO ================= -->
     <h2 class="sec-title" id="intro">使い方＆出題分析</h2>
@@ -492,7 +494,7 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
 
     <!-- ================= ALA ================= -->
     <h2 class="sec-title" id="ala">ALA（Boyd「最適化数学」）パート <span class="pri p3">P3・課題の類題</span></h2>
-    <p class="sec-sub">「未知の問題は滅多に出ない」方針。毎週の課題 ex1〜ex-7th の類題がそのまま出る。公式と各週テーマだけ押さえる。持ち込む自分のレポートが最強。</p>
+    <p class="sec-sub">「未知の問題は滅多に出ない」方針。毎週の課題 ex1〜ex-7th の類題がそのまま出る。持ち込み不可なので、公式と各週テーマを暗記して手を動かせるようにしておく。</p>
 
     <div class="cheat">
       <h3>🪙 ALA 公式チートシート</h3>
@@ -520,8 +522,8 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
     </div>
 
     <div class="problem" data-id="ala_pc">
-      <div class="phead"><span class="pno">持ち込みPC用</span><span class="badge algebra">検算</span></div>
-      <div class="stmt">計算が合っているか不安なとき、Python (numpy) で一発検算できる（答案は手計算過程を書くこと。Pythonは検算専用）。</div>
+      <div class="phead"><span class="pno">自宅練習の検算用</span><span class="badge algebra">検算</span></div>
+      <div class="stmt">本番は持ち込み不可なので試験では使えないが、<b>今夜の練習</b>で自分の手計算が合っているか Python (numpy) で確認できる。手順を体で覚えるための答え合わせに。</div>
       <button class="reveal">スニペットを見る ▼</button>
       <div class="solution">
         <div class="algebra">import numpy as np
@@ -540,11 +542,11 @@ np.linalg.pinv(A)               <span style="color:#8ea0c0"># 擬似逆行列</s
     <!-- ================= CHECK ================= -->
     <h2 class="sec-title" id="check">最終チェック＆当日</h2>
     <div class="infobox cyg">
-      <h2>✅ 持ち物・立ち回り</h2>
+      <h2>✅ 持ち物・立ち回り（2026＝持ち込み不可）</h2>
       <ul>
-        <li><b>ボールペン</b>（加点対象！過去年度は +5点／方眼紙 +1点・ペン +1点）＋予備。</li>
-        <li>このページの印刷 or PC（充電）／ノート・自分のレポート・テキスト（<b>持ち込み可</b>）。</li>
-        <li>各問<b>最後に検算</b>：代入して戻るか・次元が合うか・$A\boldsymbol p=\lambda\boldsymbol p$ か。</li>
+        <li><b>2026年度は持ち込み不可</b>。ノート・レポート・テキスト・コピー・パソコンは<u>持ち込めない</u>。手順を暗記して臨む。</li>
+        <li><b>ボールペン</b>（「ボールペンで書いたら加点」の記載は残存。持参推奨）＋予備。電卓の可否は不明→教員の指示に従う。</li>
+        <li>各問<b>最後に検算</b>（頭の中で）：代入して戻るか・次元が合うか・$A\boldsymbol p=\lambda\boldsymbol p$ か。</li>
         <li>詰まったら1問7分で見切って次へ。5問×20点、部分点を全問から拾う。</li>
         <li><b>睡眠は最低2時間</b>。徹夜より、寝て朝に見直すほうが点は出る。</li>
       </ul>
