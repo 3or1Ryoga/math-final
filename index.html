@@ -126,6 +126,15 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
     background:#fff; color:var(--accent); padding:4px 10px; border-radius:8px; cursor:pointer; white-space:nowrap; flex:none;}
   .mdcopy:hover{background:#e8f0ff; border-color:var(--accent)}
   .mdcopy.done{background:var(--write-bg); color:var(--write); border-color:#86efac}
+  @media print{
+    .topbar,.sidebar,.mdcopy,.reveal,.conf{display:none !important}
+    .layout{grid-template-columns:1fr; max-width:none; padding:10px}
+    .solution{display:block !important; border-left-color:#999}
+    .problem,.infobox,.cheat,.miss,.mbox{break-inside:avoid}
+    .problem{box-shadow:none}
+    body{background:#fff}
+    a{color:var(--ink)}
+  }
 </style>
 </head>
 <body>
