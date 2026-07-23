@@ -33,10 +33,14 @@
   .fbox{border:1px solid var(--line);border-radius:8px;padding:7px 11px;font-size:12px;background:#fff}
   .fbox b{color:var(--accent-d)}
   .warnrow{background:var(--danger-bg);border:1px solid #fca5a5;color:var(--danger);border-radius:8px;padding:6px 10px;font-size:12px;margin:6px 0}
-  .pathead{margin:14px 0 6px;padding:5px 11px;background:#eef2fb;border-left:5px solid var(--accent);border-radius:0 8px 8px 0}
-  .pathead h3{font-size:14px;margin:0;color:var(--accent-d)}
-  .pathead .see{font-size:11.5px;color:var(--sub);margin:2px 0 0}
+  .pathead{margin:14px 0 7px;padding:8px 12px;background:#f7faff;border:1px solid #bcd0f7;border-radius:9px;break-inside:avoid}
+  .pathead h3{font-size:14px;margin:0 0 4px;color:var(--accent-d)}
+  .pathead .see{font-size:12px;margin:0 0 4px}
   .pathead .see b{color:var(--warn)}
+  .pathead ol.steps{margin:4px 0 5px;padding-left:20px;font-size:11.8px;line-height:1.62}
+  .pathead ol.steps li{margin:3px 0}
+  .pathead .kon{font-size:11.5px;background:var(--gold-bg);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:5px 9px;margin:5px 0 0}
+  .pathead .kon b{color:var(--gold)}
   .prob{border:1px solid var(--line);border-radius:9px;padding:8px 11px;margin:0 0 9px;background:#fff;break-inside:avoid}
   .prob .q{font-size:12px;margin:0 0 5px}
   .prob .q .yr{display:inline-block;font-size:10.5px;font-weight:800;color:#fff;background:var(--accent);border-radius:5px;padding:1px 7px;margin-right:6px;vertical-align:middle}
@@ -64,7 +68,7 @@
     .prob svg{width:150px;height:150px}
     .formulas{gap:5px}
     .fbox,.prob,.prob .a,.foot,table.map th,table.map td.k,.warnrow,.pathead{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    table.map{font-size:9px} .pathead h3{font-size:11px} .prob .q,.prob .a,.fbox{font-size:9.3px}
+    table.map{font-size:9px} .pathead h3{font-size:11px} .prob .q,.prob .a,.fbox,.pathead ol.steps,.pathead .kon,.pathead .see{font-size:9.3px}
   }
 </style>
 </head>
@@ -111,7 +115,7 @@
   <h2 class="band g">📝 学習サイトの全問題（15問）と完成答案 ― この形をそのまま書く</h2>
   <div class="qa">
 
-    <div class="pathead"><h3>① 写像プロット + Im/Ker</h3><div class="see"><b>手順</b>：各点に $A$ を掛け $(数){\times}(ベクトル)$ に。その向き＝Im、$=0$ の条件＝Ker（どちらも直線・次元1）</div></div>
+    <div class="pathead"><h3>① 写像プロット + Im/Ker</h3><div class="see"><b>見分け方</b>：2×2行列 $A$ が与えられ「図の点はどこへ写るか」「$\mathrm{Im}f$・$\mathrm{Ker}f$ を図示」と来たら。過去は3年とも $\det A=0$。</div><ol class="steps"><li><b>行列×ベクトルを計算</b>：$A\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}ax+by\\cx+dy\end{pmatrix}$（上の行・下の行それぞれ「横に掛けて足す」）。</li><li><b>共通のかたまりを見つける</b>：$\det A=ad-bc=0$ だと上下成分が同じ式の定数倍になる。例 $\begin{pmatrix}2&-2\\-1&1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}2(x-y)\\-(x-y)\end{pmatrix}=(x-y)\begin{pmatrix}2\\-1\end{pmatrix}$。この「$x-y$」がかたまり。</li><li><b>点を打つ</b>：各点で かたまり $t$ を計算し $(2t,-t)$ に打点。元の点と矢印で結ぶ（写像前後を両方描く）。</li><li><b>Im＝行き先の直線</b>：かたまりの係数ベクトル $\begin{pmatrix}2\\-1\end{pmatrix}$ が張る直線。次元1、基底はそのベクトル。</li><li><b>Ker＝原点に消える点</b>：かたまり$=0$ の条件（$x-y=0$）が表す直線。次元1、基底は方向ベクトル $(1,1)$。</li><li><b>検算</b>：$\dim\mathrm{Im}f+\dim\mathrm{Ker}f=1+1=2=$（定義域の次元）。</li></ol><div class="kon"><b>🧠 狙い（なぜこの手順？）</b>：$\det A=0$ の行列は、平面全体を「1本の直線」に押しつぶす。押しつぶした先が $\mathrm{Im}f$、押しつぶされて原点に消える方向が $\mathrm{Ker}f$。だから「共通のかたまり」を1つ見つけるだけで、Imの向き（かたまりの係数）とKerの直線（かたまり$=0$）が<u>同時に</u>手に入る。</div></div>
 
     <div class="prob">
       <div class="q"><span class="yr real">2025 問1</span>$A=\begin{pmatrix}2&-2\\-1&1\end{pmatrix}$。図の8点 $(\pm1,\pm1),(\pm1,0),(0,\pm1)$ を写し、$\mathrm{Im}f$・$\mathrm{Ker}f$ の次元と基底を求め図示せよ。</div>
@@ -129,7 +133,7 @@
       <div class="a"><span class="lab">完成答案</span>$A\begin{pmatrix}x\\y\end{pmatrix}=(x+y)\begin{pmatrix}2\\1\end{pmatrix}$。<b>$\mathrm{Im}f=\langle(2,1)\rangle$</b>（$y{=}\tfrac12x$）。<b>$\mathrm{Ker}f: x+y=0$</b>（$y{=}-x$）。$x{+}y{=}0$ の点（例 $(1,-1)$）は原点へ写る。</div>
     </div>
 
-    <div class="pathead"><h3>② 連立1次方程式の一般解</h3><div class="see"><b>手順</b>：式を足し引きで消す→決まらない変数を $s,t$ に→「特殊解＋基本解」で書く（基本解の本数＝自由変数の数）</div></div>
+    <div class="pathead"><h3>② 連立1次方程式の一般解</h3><div class="see"><b>見分け方</b>：「一般解を<b>特殊解＋（同伴な同次方程式の）基本解の1次結合</b>で表せ」という形式指定つき。</div><ol class="steps"><li><b>掃き出し</b>：右辺も含めた拡大係数行列を、行の「入れ替え／定数倍／他行の定数倍を足す」で階段状にする（＝中学の連立の「上の式−下の式」を組織的にやる）。</li><li><b>rank を数える</b>：意味のある（0でない）式の本数が rank。<b>自由変数の個数 $=$ 未知数の数 $-$ rank</b>。</li><li><b>自由変数に $s,t$ を置く</b>：先頭1が立たない列の変数を $s,t$ に。残りの変数を $s,t$ で表す。</li><li><b>形にまとめる</b>：$\boldsymbol x=\boldsymbol x_0+s\boldsymbol u_1+t\boldsymbol u_2$。$\boldsymbol x_0$＝$s{=}t{=}0$ を入れた1個（<b>特殊解</b>）、$\boldsymbol u_i$＝$s_i$ を1増やしたときのズレ（<b>基本解</b>、本数＝自由変数の数）。</li><li><b>検算</b>：$\boldsymbol x_0$ を元式に代入して右辺一致、各 $\boldsymbol u_i$ を代入して $\boldsymbol 0$（同次を満たす）。</li></ol><div class="kon"><b>🧠 狙い（なぜこの手順？）</b>：式より未知数が多いと、答えは1個に決まらず「直線・平面」状に無数にある。それを丸ごと書くために「代表の1個（特殊解）＋そこから動ける向き（基本解）×自由な数」で表す。動ける向きの本数＝自由変数の数、というのが要。</div></div>
 
     <div class="prob">
       <div class="q"><span class="yr real">2025 問2</span>次を解き一般解を「特殊解＋基本解の1次結合」で表せ。$\begin{cases}x-y-z+2u=0\\-x-y+2z-2u=2\\x-y-2z+2u=-2\\x-y-5z+2u=-8\end{cases}$</div>
@@ -141,7 +145,7 @@
       <div class="a"><span class="lab">完成答案</span>第3+第1: $x_4{-}2x_5{=}-3$。第2−第1: $x_2{-}3x_4{+}2x_5{=}0$。自由 $x_3{=}s,x_5{=}t$。$x_4{=}-3{+}2t$, $x_2{=}-9{+}4t$, $x_1{=}-16{+}s{+}7t$。<br>$\boldsymbol x=\begin{pmatrix}-16\\-9\\0\\-3\\0\end{pmatrix}+s\begin{pmatrix}1\\0\\1\\0\\0\end{pmatrix}+t\begin{pmatrix}7\\4\\0\\2\\1\end{pmatrix}$</div>
     </div>
 
-    <div class="pathead"><h3>③ 一次結合で表す（罠あり）</h3><div class="see"><b>手順</b>：成分ごとに連立→従属で $c_3$ 自由→ラクな $c_3{=}0$。<b>矛盾（$0{=}$数）が出たら「表せない」</b></div></div>
+    <div class="pathead"><h3>③ 一次結合で表す（罠あり）</h3><div class="see"><b>見分け方</b>：「$\boldsymbol a,\boldsymbol b$ を $\boldsymbol a_1,\boldsymbol a_2,\boldsymbol a_3$ の一次結合で表せ」。材料はわざと従属（1本余分）。</div><ol class="steps"><li><b>式を置く</b>：$c_1\boldsymbol a_1+c_2\boldsymbol a_2+c_3\boldsymbol a_3=\boldsymbol a$。倍率 $c_1,c_2,c_3$ を求める問題。</li><li><b>成分ごとに展開</b>：$i$ 成分 $=c_1(a_1)_i+c_2(a_2)_i+c_3(a_3)_i$。</li><li><b>成分ごとに等号</b>：ベクトルが等しい $\Leftrightarrow$ 全成分が等しい。だから成分の数だけ式ができる（3次元なら3本の連立）。<b>これが $c_1+c_2+c_3=\dots$ 等の正体</b>。</li><li><b>解く</b>：従属なので式が1本消え（$2=2$ 等）、$c_3$ が自由に。ラクな $c_3=0$ を選んで1組を答える。</li><li><b>$\boldsymbol b$ も同様</b>：途中で「$0=$（0でない数）」の矛盾が出たら <b>「表せない」</b>と結論（消えた式を1行見せると満点）。</li></ol><div class="kon"><b>🧠 狙い（なぜこの手順？）</b>：これは「材料を混ぜて目標を作れるか」。作れる＝目標が材料の張る空間（従属なので平面など）に<u>乗っている</u>、作れない＝乗っていない。矛盾（$0{=}3$ 等）は計算ミスではなく<b>「乗っていない＝作れない」ことの証拠</b>。だから矛盾が出たら自信を持って「表せない」。</div></div>
 
     <div class="prob">
       <div class="q"><span class="yr real">2025 問3</span>$\boldsymbol a=(1,-1,0)$, $\boldsymbol b=(0,3,1)$ を $\boldsymbol a_1=(1,-1,2),\boldsymbol a_2=(1,-1,1),\boldsymbol a_3=(1,-1,3)$ の一次結合で表せ。</div>
@@ -158,7 +162,7 @@
       <div class="a"><span class="lab">完成答案</span><b>$\boldsymbol a$：</b>第1+第2→$c_1{=}3{-}c_3$、第1→$c_2{=}2{+}c_3$、第3は恒等成立（従属）。$c_3{=}0$。<b>$\boldsymbol a=3\boldsymbol a_1+2\boldsymbol a_2$</b>（検算 $3(1,-2,1){+}2(-1,1,-2){=}(1,-4,-1)$✓）。<br><b>$\boldsymbol b$：</b>$c_1{=}1{-}c_3,c_2{=}1{+}c_3$ だが第3で $-1{=}0$ 矛盾 → <b>表せない</b>。</div>
     </div>
 
-    <div class="pathead"><h3>④ グラム・シュミット（正規直交化）</h3><div class="see"><b>手順</b>：1本目は長さで割る。2本目以降は既に作った $\boldsymbol e_i$ 方向の影 $(\boldsymbol x\cdot\boldsymbol e_i)\boldsymbol e_i$ を引いてから長さ1に</div></div>
+    <div class="pathead"><h3>④ グラム・シュミット（正規直交化）</h3><div class="see"><b>見分け方</b>：「次のベクトルから $\mathbb R^3$ の正規直交基底を作れ」。答えが簡単でも途中式必須。</div><ol class="steps"><li><b>1本目</b>：$\boldsymbol e_1=\dfrac{\boldsymbol x_1}{\|\boldsymbol x_1\|}$。$\|\boldsymbol x\|=\sqrt{x_1^2+x_2^2+x_3^2}$ で割る（＝長さ1にする＝正規化）。</li><li><b>2本目</b>：$\boldsymbol u_2=\boldsymbol x_2-(\boldsymbol x_2\!\cdot\!\boldsymbol e_1)\boldsymbol e_1$（$\boldsymbol e_1$ 方向の影を引く）→ $\boldsymbol e_2=\dfrac{\boldsymbol u_2}{\|\boldsymbol u_2\|}$。</li><li><b>3本目</b>：$\boldsymbol u_3=\boldsymbol x_3-(\boldsymbol x_3\!\cdot\!\boldsymbol e_1)\boldsymbol e_1-(\boldsymbol x_3\!\cdot\!\boldsymbol e_2)\boldsymbol e_2$（両方の影を引く）→ $\boldsymbol e_3=\dfrac{\boldsymbol u_3}{\|\boldsymbol u_3\|}$。</li><li><b>締め</b>：$\boldsymbol e_i\!\cdot\!\boldsymbol e_j=\delta_{ij}$（互いに直交・長さ1）を確認と書く。</li></ol><div class="kon"><b>🧠 狙い（なぜこの手順？）</b>：内積 $\boldsymbol x\!\cdot\!\boldsymbol e$ は「$\boldsymbol e$ 方向にどれだけ乗っているか」の量。$(\boldsymbol x\!\cdot\!\boldsymbol e)\boldsymbol e$ がその「影（射影）」で、これを引くと残りは $\boldsymbol e$ と直角になる。＝「既に確定した方向の成分を消して、残りで新しい直角の軸を作る」の繰り返し。途中で残りが $\boldsymbol0$ なら元が一次従属。</div></div>
 
     <div class="prob">
       <div class="q"><span class="yr real">2023=2024 問4</span>$\boldsymbol x_1=(1,0,0),\boldsymbol x_2=(1,1,0),\boldsymbol x_3=(1,1,1)$ から $\mathbb R^3$ の正規直交基底を作れ。</div>
@@ -170,7 +174,7 @@
       <div class="a"><span class="lab">完成答案</span>$\boldsymbol e_1{=}\tfrac1{\sqrt2}(1,1,0)$。$\boldsymbol u_2{=}(1,0,1){-}\tfrac12(1,1,0){=}(\tfrac12,-\tfrac12,1)$, $\boldsymbol e_2{=}\tfrac1{\sqrt6}(1,-1,2)$。$\boldsymbol u_3{=}(-\tfrac23,\tfrac23,\tfrac23)$, $\boldsymbol e_3{=}\tfrac1{\sqrt3}(-1,1,1)$。</div>
     </div>
 
-    <div class="pathead"><h3>⑤ 線形写像の Im/Ker の次元と基底</h3><div class="see"><b>手順</b>：掃き出し→rank $r$。Im次元$=r$（基底は<b>元の列</b>）。Ker次元$=$列数$-r$（$A\boldsymbol x{=}\boldsymbol0$ の基本解）</div></div>
+    <div class="pathead"><h3>⑤ 線形写像の Im/Ker の次元と基底</h3><div class="see"><b>見分け方</b>：$3{\times}4$ 行列で $f(\boldsymbol x)=A\boldsymbol x$（$\mathbb R^4\to\mathbb R^3$）の「Im・Ker の次元と1組の基底」。</div><ol class="steps"><li><b>掃き出し</b>：$A$ を階段行列に。先頭1（ピボット）が立つ列を記録。</li><li><b>rank $r$</b>＝ピボットの数。</li><li><b>Im f</b>：次元$=r$。基底は<b>掃き出す前の元の $A$ の（ピボット列に対応する）列</b>。<span style="color:#b91c1c">掃き出し後の列を書くのは誤り</span>。</li><li><b>Ker f</b>：次元$=$（列数 $n$）$-r$（<b>次元定理</b>）。$A\boldsymbol x=\boldsymbol0$ を階段行列で解き、自由変数に $s,t$ を置いて基本解を出す。</li><li><b>検算</b>：$A\times$（Kerの基底）$=\boldsymbol0$、次元の和 $=n$。</li></ol><div class="kon"><b>🧠 狙い（なぜこの手順？）</b>：$\mathrm{Im}f$＝$A$ が出せる出力全部＝<u>列ベクトルの張る空間</u>。行変形は列空間の代表を変えないので基底は「元の列」。$\mathrm{Ker}f$＝入れると出力が消える入力。ピボットでない列＝自由に動ける方向＝Kerの次元。だから rank さえ出れば両方の次元が決まる。</div></div>
 
     <div class="prob">
       <div class="q"><span class="yr real">2024 問5</span>$A=\begin{pmatrix}1&-1&0&0\\0&1&1&-1\\-1&0&-1&1\end{pmatrix}$, $f(\boldsymbol x){=}A\boldsymbol x$ の Im・Ker の次元と基底。</div>
@@ -182,7 +186,7 @@
       <div class="a"><span class="lab">完成答案</span>第2−4·第1$=(0,1,2,-1)$、第3−第1$=(0,1,2,-1)$→差で0行→rank2。<b>$\mathrm{Im}f$：次元2</b>, 基底 $\{(1,4,1),(0,1,1)\}$。<b>$\mathrm{Ker}f$：次元2</b>（$x_3{=}s,x_4{=}t$→$x_2{=}-2s{+}t,x_1{=}2s{-}t$）, 基底 $\{(2,-2,1,0),(-1,1,0,1)\}$。</div>
     </div>
 
-    <div class="pathead"><h3>⑥ 直交補空間 $V^\perp$</h3><div class="see"><b>手順</b>：$V$ が式で定義されているなら、その<b>式の係数ベクトル</b>がそのまま $V^\perp$ の基底。$\dim V{+}\dim V^\perp{=}$全体で検算</div></div>
+    <div class="pathead"><h3>⑥ 直交補空間 $V^\perp$</h3><div class="see"><b>見分け方</b>：条件式で定義された部分空間 $V$ の「$V^\perp$ を求めよ」。</div><ol class="steps"><li><b>$V$ の定義を見る</b>：$V=\{\,\boldsymbol x:\ \boldsymbol c_1\!\cdot\!\boldsymbol x=0,\ \boldsymbol c_2\!\cdot\!\boldsymbol x=0\,\}$ の形（＝$A\boldsymbol x=\boldsymbol0$）。</li><li><b>係数ベクトルを書き出す</b>：各式の係数を並べた $\boldsymbol c_1,\boldsymbol c_2$（例 $2x_1{-}2x_2{+}x_3{=}0$ なら $\boldsymbol c=(2,-2,1)$）。</li><li><b>近道</b>：この $\boldsymbol c_1,\boldsymbol c_2$ が張る空間が<b>そのまま $V^\perp$</b>。一般には「$V$ の基底と内積0」の連立を解いてもよい。</li><li><b>検算</b>：$V^\perp$ の各ベクトルと $V$ の基底の内積$=0$、$\dim V+\dim V^\perp=$（全体の次元）。</li></ol><div class="kon"><b>🧠 狙い（なぜこの手順？）</b>：「$\boldsymbol c\!\cdot\!\boldsymbol x=0$」は「$\boldsymbol c$ に垂直な $\boldsymbol x$」の意味。つまり $V$ は<u>係数ベクトルたちに垂直な点の集まり</u>。逆に言えば、その係数ベクトルたち自身が「$V$ に垂直な方向」＝$V^\perp$ を張る。だから定義式の係数を並べるだけで答えになる。</div></div>
 
     <div class="prob">
       <div class="q"><span class="yr real">2025 問4</span>$V=\{(x_1,x_2,x_3)\in\mathbb R^3;\ 2x_1-2x_2+x_3=0,\ x_1-2x_2+2x_3=0\}$ の $V^\perp$ を求めよ。</div>
@@ -194,7 +198,7 @@
       <div class="a"><span class="lab">完成答案</span>$x_1{=}t$→$x_2{=}t,x_3{=}-t$。<b>$V=\langle(1,1,-1)\rangle$</b>。垂直条件 $y_1{+}y_2{-}y_3{=}0$→<b>$V^\perp=\langle(-1,1,0),(1,0,1)\rangle$</b>（次元2）。$1{+}2{=}3$ ✓</div>
     </div>
 
-    <div class="pathead"><h3>⑦ 行列の対角化</h3><div class="see"><b>手順</b>：$\det(A{-}\lambda I){=}0$ で $\lambda$→各 $\lambda$ で $(A{-}\lambda I)\boldsymbol x{=}\boldsymbol0$→固有ベクトルを縦に並べ $P$。検算 $A\boldsymbol p{=}\lambda\boldsymbol p$</div></div>
+    <div class="pathead"><h3>⑦ 行列の対角化</h3><div class="see"><b>見分け方</b>：「$A$ が対角化可能ならば変換の行列を求めて対角化せよ」。</div><ol class="steps"><li><b>固有値</b>：$\det(A-\lambda I)=0$ を解く（$I$＝単位行列）。3次なら $\lambda$ の3次式 → 整数（定数項の約数）を代入して1つ根を見つけ因数分解。</li><li><b>固有ベクトル</b>：各 $\lambda$ で $(A-\lambda I)\boldsymbol x=\boldsymbol0$ を掃き出して解く。出た $\boldsymbol x$ が固有ベクトル $\boldsymbol p$。</li><li><b>可能か判定</b>：固有値が全て相異なれば<b>対角化可能</b>（重解なら固有ベクトルが重複度の分だけ取れるか確認）。理由を一言書く。</li><li><b>組む</b>：$P=[\boldsymbol p_1\ \boldsymbol p_2\ \boldsymbol p_3]$（固有ベクトルを列に並べる）→ $P^{-1}AP=\mathrm{diag}(\lambda_1,\lambda_2,\lambda_3)$。<b>対角の並びは $P$ の列の順</b>。</li><li><b>検算</b>：$A\boldsymbol p_i=\lambda_i\boldsymbol p_i$（掛けるだけ）。$\sum\lambda=\mathrm{tr}A$（対角和）、$\prod\lambda=\det A$。</li></ol><div class="kon"><b>🧠 狙い（なぜこの手順？）</b>：固有ベクトル＝「$A$ を掛けても向きが変わらず、長さだけ $\lambda$ 倍になる特別な方向」。その方向を新しい座標軸に選ぶと、$A$ の作用が「軸ごとに $\lambda$ 倍するだけ」＝対角行列になる。$P$ は「新しい軸 → 元の座標」への変換で、$P^{-1}AP$ が対角＝一番シンプルな姿。</div></div>
 
     <div class="prob">
       <div class="q"><span class="yr real">2025 問5</span>$A=\begin{pmatrix}6&4&-4\\-3&-2&3\\5&4&-3\end{pmatrix}$ が対角化可能ならば変換行列を求めて対角化せよ。</div>
