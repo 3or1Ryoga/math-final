@@ -433,6 +433,21 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
 
     <div class="miss">🚨 <b>3年連続の罠</b>：$\boldsymbol a$ は表せる（表し方は無数、1つ書けばOK）が、$\boldsymbol b$ は<b>連立が矛盾して表せない</b>。「計算ミスかな？」とやり直すのが最大の時間ロス。矛盾（$0=1$ 型）が出たら堂々と「表せない」と書く。</div>
 
+    <div class="infobox cyg">
+      <h2>🧩 まず：なぜ「$c_1+c_2+c_3=1$」みたいな式が出てくるの？</h2>
+      <div class="beginner" style="margin-top:4px">
+        <p>ここが分かれば③は全部解けます。2025の $\boldsymbol a=(1,-1,0)$ を例に、ゼロから式を組み立てます。</p>
+        <p><span class="q">ステップ1：やりたいことを式にする。</span> 「材料を倍率 $c_1,c_2,c_3$ で混ぜて $\boldsymbol a$ を作る」＝</p>
+        <div class="mbox">$c_1\begin{pmatrix}1\\-1\\2\end{pmatrix}+c_2\begin{pmatrix}1\\-1\\1\end{pmatrix}+c_3\begin{pmatrix}1\\-1\\3\end{pmatrix}=\begin{pmatrix}1\\-1\\0\end{pmatrix}$</div>
+        <p><span class="q">ステップ2：左辺を計算する。</span> ベクトルに数を掛けると各成分がその倍になり、ベクトルどうしの足し算は<b>成分ごと</b>に足す。だから左辺は3つの成分がこうなる：</p>
+        <div class="mbox">左辺 $=\begin{pmatrix}c_1+c_2+c_3\\ -c_1-c_2-c_3\\ 2c_1+c_2+3c_3\end{pmatrix}$</div>
+        <p><span class="q">ステップ3：ここが核心。</span> <b>2つのベクトルが「等しい」＝すべての成分がそれぞれ一致すること。</b> $(A,B,C)=(1,-1,0)$ は「$A=1$ かつ $B=-1$ かつ $C=0$」という意味ですよね。だから上の式は<b>成分ごとに見比べて</b>、3本の式に分かれる：</p>
+        <div class="mbox">1番目： $c_1+c_2+c_3=1$　　2番目： $-c_1-c_2-c_3=-1$　　3番目： $2c_1+c_2+3c_3=0$</div>
+        <p style="margin-bottom:0">👉 <b>「$c_1+c_2+c_3=1$」の正体は「左辺の1番目の成分($c_1+c_2+c_3$)＝目標の1番目の成分($1$)」というだけ</b>。特別な条件じゃなく、<u>1行目を見比べた式</u>です。（2番目は1番目を $-1$ 倍しただけで同じ情報なので、実質2本の式で解く。）<br>
+        $\boldsymbol b=(0,3,1)$ だと、1番目が $c_1+c_2+c_3=0$、2番目が $-c_1-c_2-c_3=3$ すなわち $c_1+c_2+c_3=-3$。<b>同じ $c_1+c_2+c_3$ が $0$ でも $-3$ でもあることになり不可能</b>＝表せない。</p>
+      </div>
+    </div>
+
     <div class="problem" data-id="q3_2025">
       <div class="phead"><span class="pno">2025年度 問3</span><span class="badge real">過去問（実物）</span><span class="badge write">一次結合</span></div>
       <div class="stmt">$\boldsymbol a=(1,-1,0)$, $\boldsymbol b=(0,3,1)$ を $\boldsymbol a_1=(1,-1,2)$, $\boldsymbol a_2=(1,-1,1)$, $\boldsymbol a_3=(1,-1,3)$ の一次結合で表せ。</div>
@@ -442,7 +457,7 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
         <h4>観察が最速</h4>
         <div class="explain">$\boldsymbol a_1,\boldsymbol a_2,\boldsymbol a_3$ はどれも第1・2成分が $(1,-1)$。よってどんな結合も「第2成分 $=$ −第1成分」になる。</div>
         <h4>$\boldsymbol a=(1,-1,0)$ → 表せる</h4>
-        <div class="explain">条件 $c_1+c_2+c_3=1$、第3成分 $2c_1+c_2+3c_3=0$。差から $c_1+2c_3=-1$。$c_3=0$ とすると $c_1=-1,c_2=2$：</div>
+        <div class="explain">成分ごとに見比べて式を立てる（← ここが不安なら上の🧩ボックス）：<b>1番目の成分</b>から $c_1+c_2+c_3=1$、<b>3番目の成分</b>から $2c_1+c_2+3c_3=0$。差から $c_1+2c_3=-1$。$c_3=0$ とすると $c_1=-1,c_2=2$：</div>
         <div class="mbox">$\boldsymbol a=-\boldsymbol a_1+2\boldsymbol a_2$　（検算 $-(1,-1,2)+2(1,-1,1)=(1,-1,0)$ ✓）</div>
         <h4>$\boldsymbol b=(0,3,1)$ → 表せない</h4>
         <div class="explain">第1成分から $c_1+c_2+c_3=0$。しかし第2成分は $-(c_1+c_2+c_3)=3$、つまり $0=3$ で<b>矛盾</b>。$\boldsymbol b$ は「第2成分 $=$ −第1成分」の平面に乗っていないので<b>表せない</b>。</div>
@@ -450,7 +465,7 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
           <h5>🔰 0からわかる解説</h5>
           <p><span class="q">「一次結合で表す」って？</span> 材料ベクトル $\boldsymbol a_1,\boldsymbol a_2,\boldsymbol a_3$ を<b>好きな倍率で足し合わせて</b>目標 $\boldsymbol a$ を作れるか、という問題。「$\boldsymbol a=c_1\boldsymbol a_1+c_2\boldsymbol a_2+c_3\boldsymbol a_3$ となる倍率 $c_1,c_2,c_3$ を見つけよ」ということ。レシピの分量を求める感覚。</p>
           <p><span class="q">なぜ片方は作れない？</span> 材料3本をよく見ると、上2つの成分が全部 $(1,-1)$。<b>どんな倍率で混ぜても、上2つは必ず「上＝○、真ん中＝−○」の関係</b>になる。目標 $\boldsymbol b=(0,3,1)$ は上が0なのに真ん中が3で、この関係を破っている → だから<b>どうやっても作れない＝「表せない」</b>。これが罠の正体。</p>
-          <p><span class="q">手順</span>：①「$c_1\boldsymbol a_1+c_2\boldsymbol a_2+c_3\boldsymbol a_3=$ 目標」を成分ごとに書くと連立方程式ができる →②解く →③倍率が見つかれば「表せる」、$0=3$ のような<b>あり得ない式</b>が出たら「表せない」。<b>矛盾は間違いではなく“答え”</b>なので、出たら自信を持って書く。</p>
+          <p><span class="q">手順</span>：①「$c_1\boldsymbol a_1+c_2\boldsymbol a_2+c_3\boldsymbol a_3=$ 目標」を<b>成分ごとに見比べて</b>連立方程式にする（上の🧩ボックス参照。1番目の成分どうしを等号でつなぐと $c_1+c_2+c_3=1$、3番目どうしで $2c_1+c_2+3c_3=0$）→②解く →③倍率が見つかれば「表せる」、$0=3$ のような<b>あり得ない式</b>が出たら「表せない」。<b>矛盾は間違いではなく“答え”</b>なので、出たら自信を持って書く。</p>
         </div>
       </div>
       <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
