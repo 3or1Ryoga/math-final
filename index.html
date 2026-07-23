@@ -279,13 +279,15 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
     </div>
 
     <div class="infobox">
-      <h2>解き方テンプレ</h2>
+      <h2>解き方テンプレ（初見でもこの順でOK）</h2>
+      <p style="font-size:13.5px;margin:0 0 8px;color:#5b6478">ひとことで言うと：<b>図の点に行列を掛けて「行き先」を出し、両方を打つ。あとは直線を2本引くだけ。</b></p>
       <ol>
-        <li>各点 $(x,y)$ に $A$ を掛けて写像先を計算し、矢印つきでプロット（<b>写像前後の両方</b>を描く）。</li>
-        <li>$\det A=0$ なら平面全体が<b>1本の直線につぶれる</b>。$\mathrm{Im}f$＝列ベクトルの張る直線。</li>
-        <li>$\mathrm{Ker}f$＝$A\boldsymbol x=\boldsymbol0$ の解＝1行目 $ax+by=0$ の直線。</li>
-        <li>25年以降は「<b>次元と一組の基底</b>」も明記要求 → $\dim\mathrm{Im}f=1$, $\dim\mathrm{Ker}f=1$ と基底ベクトルを書く。</li>
+        <li><b>点を1個ずつ写す</b>：図の点 $(x,y)$ に行列 $A$ を掛け算する（$A\begin{pmatrix}x\\y\end{pmatrix}$）。出た答えが「行き先」。<b>元の点と行き先の両方</b>をグラフに打ち、矢印でつなぐ。全部の点でやる。</li>
+        <li><b>行き先はなぜか1直線に並ぶ</b>：掛け算の結果が「（ある数）×（決まったベクトル）」の形になる（例 $(x-y)\begin{pmatrix}2\\-1\end{pmatrix}$）。その<u>決まったベクトルの向きの直線</u>が答えの $\mathrm{Im}f$（像）。→ この直線を引いて「Im f」と書く。</li>
+        <li><b>原点に潰れる点を探す</b>：行き先が $\begin{pmatrix}0\\0\end{pmatrix}$ になる元の点の集まりが $\mathrm{Ker}f$（核）。掛け算の結果を $0$ にする条件（例 $x-y=0$）を解くと直線が出る。→ この直線を引いて「Ker f」と書く。</li>
+        <li><b>次元と基底も書く</b>（2025〜必須）：Im f も Ker f も直線なので<b>次元は1</b>。基底は<u>その直線の向きベクトル1本</u>（例 Im f なら $(2,-1)$、Ker f なら $(1,1)$）。</li>
       </ol>
+      <p style="font-size:12.5px;margin:8px 0 0;color:#5b6478">※「行列を掛ける」＝上の行・下の行それぞれで「よこに掛けて足す」。$\begin{pmatrix}a&b\\c&d\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}ax+by\\cx+dy\end{pmatrix}$。</p>
     </div>
 
     <div class="problem" data-id="q1_2025">
@@ -369,13 +371,15 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
     <p class="sec-sub">一般解を「特殊解 ＋ 同伴な同次方程式の基本解の1次結合」の形で書く。形式指定を守るのが得点のカギ。</p>
 
     <div class="infobox">
-      <h2>解き方テンプレ</h2>
+      <h2>解き方テンプレ（初見でもこの順でOK）</h2>
+      <p style="font-size:13.5px;margin:0 0 8px;color:#5b6478">ひとことで言うと：<b>式を足し引きして変数を減らし、決まらない変数は文字（$s,t$）で残す。</b></p>
       <ol>
-        <li>拡大係数行列を<b>掃き出し</b>で階段行列に。</li>
-        <li>先頭1が立たない列の変数（自由変数）に $s,t,\dots$ を置く。</li>
-        <li>$\boldsymbol x=\boldsymbol x_0+s\boldsymbol u_1+t\boldsymbol u_2$ に整理。$\boldsymbol x_0$＝特殊解、$\boldsymbol u_i$＝基本解（本数＝自由変数の数＝$n-\mathrm{rank}$）。</li>
-        <li>検算：$\boldsymbol x_0$ を代入して右辺一致、$\boldsymbol u_i$ を代入して $0$。</li>
+        <li><b>式どうしを足し引きして変数を消す</b>（これを「掃き出し」と呼ぶ）。中学の連立方程式で「上の式−下の式」をやったのと同じノリで、$x$ や $y$ を1つずつ消していく。</li>
+        <li><b>最後まで1つに決まらない変数が残る</b>（式より未知数が多いと必ず残る）。それを $s,t$ のような<u>文字（自由に選べるツマミ）</u>にする。残る個数は「未知数の数 − 使える式の本数」。</li>
+        <li><b>答えを「基準の1個＋ツマミで動く分」の形に書く</b>：$\boldsymbol x=\underbrace{\boldsymbol x_0}_{\text{基準の1個}}+s\,\boldsymbol u_1+t\,\boldsymbol u_2$。$\boldsymbol x_0$＝ツマミを全部0にした答え（＝<b>特殊解</b>）、$\boldsymbol u_i$＝ツマミを1増やすとズレる向き（＝<b>基本解</b>）。基本解の本数＝ツマミの数。</li>
+        <li><b>確かめ算</b>：$\boldsymbol x_0$ を元の式に入れて右辺と合えばOK。$\boldsymbol u_i$ を入れて $0$ になればOK。</li>
       </ol>
+      <p style="font-size:12.5px;margin:8px 0 0;color:#5b6478">※「特殊解＋基本解の1次結合」という書き方が指定される。上の下線ラベルを付けて書けば形式点が取れる。</p>
     </div>
 
     <div class="problem" data-id="q2_2025">
@@ -515,13 +519,15 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
     <p class="sec-sub">条件式で定義された部分空間 $V$ の直交補空間を求める。$V$ が「$A\boldsymbol x=\boldsymbol0$」型なら係数ベクトルが張る空間がそのまま $V^\perp$。</p>
 
     <div class="infobox">
-      <h2>解き方テンプレ</h2>
+      <h2>解き方テンプレ（初見でもこの順でOK）</h2>
+      <p style="font-size:13.5px;margin:0 0 8px;color:#5b6478">ひとことで言うと：<b>$V$ と垂直な向きを全部集める。「垂直＝内積0」で式を立てるだけ。</b>（内積＝成分どうしを掛けて全部足す）</p>
       <ol>
-        <li>$V$ をパラメータ表示して基底を出す。</li>
-        <li>$V^\perp=\{\boldsymbol y:\boldsymbol y\cdot\boldsymbol v=0\ (\forall \boldsymbol v\in V\text{の基底})\}$ を連立で解く。</li>
-        <li><b>ショートカット</b>：$V=\{A\boldsymbol x=\boldsymbol0\}$ なら $V^\perp=$ 行ベクトルが張る空間。</li>
-        <li>次元チェック $\dim V+\dim V^\perp=n$。</li>
+        <li><b>まず $V$ が何者か調べる</b>：条件式を解いて $V$ を「文字×ベクトル」の形に書く（例 $V=t(2,3,2)$）。これで $V$ の向き（基底）が分かる。</li>
+        <li><b>それと垂直な向きを探す</b>：$V^\perp$ は「$V$ の基底と<u>内積が0</u>になるベクトル $\boldsymbol y$ 全部」。内積0の式を立てて解く。</li>
+        <li><b>近道</b>：$V$ が「$2x_1-2x_2+x_3=0$」のように<u>式で定義</u>されているなら、その<b>式の係数を並べたベクトル</b>（例 $(2,-2,1)$）がそのまま $V^\perp$ の基底になる。式を書き写すだけ。</li>
+        <li><b>確かめ算</b>：$\dim V+\dim V^\perp$ が元の空間の次元（$\mathbb R^3$ なら3）になっていればOK。</li>
       </ol>
+      <p style="font-size:12.5px;margin:8px 0 0;color:#5b6478">※「直交補空間」＝$V$ に垂直な方向の全体。床($V$)に対する「まっすぐ立つ棒の向き全部」のイメージ。</p>
     </div>
 
     <div class="problem" data-id="q6_2025">
@@ -575,13 +581,14 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
     <p class="sec-sub">固有値・固有ベクトルを求め、変換行列 $P$ で対角化する。2025年に新登場したので2026も要警戒。</p>
 
     <div class="infobox">
-      <h2>解き方テンプレ</h2>
+      <h2>解き方テンプレ（初見でもこの順でOK）</h2>
+      <p style="font-size:13.5px;margin:0 0 8px;color:#5b6478">ひとことで言うと：<b>「掛けても向きが変わらない特別な方向」を見つけて、それを軸に並べ替えるだけ。</b>その方向を<u>固有ベクトル</u>、そのときの倍率を<u>固有値 $\lambda$</u> と呼ぶ。</p>
       <ol>
-        <li>固有方程式 $\det(A-\lambda I)=0$ を解く（3次は整数解を代入で探す）。</li>
-        <li>各 $\lambda_i$ で $(A-\lambda_i I)\boldsymbol x=\boldsymbol0$ を解いて固有ベクトル $\boldsymbol p_i$。</li>
-        <li>固有値が全て異なれば<b>対角化可能</b>（重解は固有ベクトルが次元分とれるか確認）。</li>
-        <li>$P=[\boldsymbol p_1\,\boldsymbol p_2\,\boldsymbol p_3]$ とすると $P^{-1}AP=\mathrm{diag}(\lambda_1,\lambda_2,\lambda_3)$。</li>
-        <li>検算は $A\boldsymbol p_i=\lambda_i\boldsymbol p_i$（掛けるだけ）＋ $\sum\lambda=\mathrm{tr}A$, $\prod\lambda=\det A$。</li>
+        <li><b>倍率（固有値 $\lambda$）を求める</b>：$\det(A-\lambda I)=0$ という方程式を解く（$I$ は対角だけ1の行列）。これが「長さだけ $\lambda$ 倍になる方向が存在する条件」。3次なら $\lambda$ の3次方程式 → 整数を代入して解を探すと速い。</li>
+        <li><b>各 $\lambda$ の方向（固有ベクトル）を求める</b>：見つけた $\lambda$ ごとに $(A-\lambda I)\boldsymbol x=\boldsymbol0$ を解く（②のImf/Kerと同じ掃き出し）。出た $\boldsymbol x$ がその方向。</li>
+        <li><b>対角化できるか判定</b>：固有値が全部バラバラなら文句なしで<b>可能</b>。「対角化可能ならば」と聞かれたら、この理由を一言書く。</li>
+        <li><b>組み立てる</b>：固有ベクトルを<b>縦に並べた行列</b>を $P$ とすると、$P^{-1}AP$ が対角行列（斜めに $\lambda$ が並ぶ）になる。並べた順と対角の順は対応。</li>
+        <li><b>確かめ算（超ラク）</b>：$P^{-1}$ を計算しなくても、$A\boldsymbol p=\lambda\boldsymbol p$（掛けたら $\lambda$ 倍か）を見るだけ。さらに $\lambda$ の合計＝対角和($\mathrm{tr}A$)、$\lambda$ の積＝$\det A$ でも確認できる。</li>
       </ol>
     </div>
 
@@ -618,11 +625,14 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
     <p class="sec-sub">23・24年は一字一句同じ問題。25年は姿を消したが、ALA側でも使うので型は必ず確保。</p>
 
     <div class="infobox">
-      <h2>アルゴリズム（これだけ暗記）</h2>
-      <div class="mbox">$\boldsymbol u_1=\boldsymbol x_1,\quad \boldsymbol e_1=\dfrac{\boldsymbol u_1}{\|\boldsymbol u_1\|}$<br>
-      $\boldsymbol u_2=\boldsymbol x_2-(\boldsymbol x_2\!\cdot\!\boldsymbol e_1)\boldsymbol e_1,\quad \boldsymbol e_2=\dfrac{\boldsymbol u_2}{\|\boldsymbol u_2\|}$<br>
-      $\boldsymbol u_3=\boldsymbol x_3-(\boldsymbol x_3\!\cdot\!\boldsymbol e_1)\boldsymbol e_1-(\boldsymbol x_3\!\cdot\!\boldsymbol e_2)\boldsymbol e_2,\quad \boldsymbol e_3=\dfrac{\boldsymbol u_3}{\|\boldsymbol u_3\|}$</div>
-      <p style="margin-bottom:0">「既に作った $\boldsymbol e_i$ 方向の射影を引いて残りを正規化」の繰り返し。途中 $\boldsymbol u_k=\boldsymbol0$ なら元が一次従属。</p>
+      <h2>解き方テンプレ（やることは2つの繰り返しだけ）</h2>
+      <p style="font-size:13.5px;margin:0 0 8px;color:#5b6478">ひとことで言うと：<b>①すでに作った方向の“影”を引いて直角にする ②長さ1にする。これを1本ずつ繰り返す。</b></p>
+      <ol>
+        <li><b>1本目</b>：そのまま長さ1にするだけ。$\boldsymbol e_1=\dfrac{\boldsymbol x_1}{\|\boldsymbol x_1\|}$（$\|\ \|$＝長さ。$\sqrt{\text{成分の2乗の和}}$ で割る＝<b>正規化</b>）。</li>
+        <li><b>2本目</b>：$\boldsymbol x_2$ から「$\boldsymbol e_1$ 方向にはみ出た分（影＝射影）」を引いて直角にし、また長さ1に。<br>$\boldsymbol u_2=\boldsymbol x_2-(\boldsymbol x_2\!\cdot\!\boldsymbol e_1)\boldsymbol e_1$、 $\boldsymbol e_2=\dfrac{\boldsymbol u_2}{\|\boldsymbol u_2\|}$。（$\boldsymbol x_2\!\cdot\!\boldsymbol e_1$＝内積＝はみ出た量）</li>
+        <li><b>3本目</b>：今度は $\boldsymbol e_1$ と $\boldsymbol e_2$ <u>両方</u>の影を引いてから長さ1に。<br>$\boldsymbol u_3=\boldsymbol x_3-(\boldsymbol x_3\!\cdot\!\boldsymbol e_1)\boldsymbol e_1-(\boldsymbol x_3\!\cdot\!\boldsymbol e_2)\boldsymbol e_2$、 $\boldsymbol e_3=\dfrac{\boldsymbol u_3}{\|\boldsymbol u_3\|}$。</li>
+      </ol>
+      <p style="font-size:12.5px;margin:8px 0 0;color:#5b6478">※ゴールは「互いに直角・長さ1」の軸一式（＝正規直交基底）。もし途中で引いた残りが $\boldsymbol0$ になったら、元が一次従属（ムダな1本あり）のサイン。</p>
     </div>
 
     <div class="problem" data-id="q4_2324">
