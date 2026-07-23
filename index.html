@@ -249,6 +249,35 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
     <h2 class="sec-title" id="q1">① 写像プロット + Im/Ker <span class="pri p1">P1・毎年出る</span></h2>
     <p class="sec-sub">表現行列 $A$ で図の点がどこへ写るかプロットし、$\mathrm{Im}f$・$\mathrm{Ker}f$ を図示。過去 $A$ は3年とも $\det A=0$ の特異行列。</p>
 
+    <div class="infobox cyg">
+      <h2>🟠 その前に：「8点」「5点」ってどういう意味？</h2>
+      <div class="beginner" style="margin-top:4px">
+        <p><span class="q">まず超大事な区別。</span> この問題文の「点」には<b>意味の違う2種類</b>が混ざっていて、そこが混乱のもと：</p>
+        <ul>
+          <li><b>「(20点)」＝配点</b>。その問題の<u>点数（スコア）</u>。全部の問題が20点ずつ。</li>
+          <li><b>「8点」「5点」＝図に打たれた丸（●）の個数</b>。<u>写す対象の座標</u>のこと。点数じゃない！こっちで混乱する。</li>
+        </ul>
+        <p><span class="q">何をする問題？</span> グラフに丸が何個か打ってある。<b>丸1個＝1つの座標 $(x,y)$</b>。その1個1個に行列 $A$ を掛けて「行き先」を計算し、<b>元の丸と行き先の両方</b>をグラフに打つ、というだけの作業。「8点」なら8個ぜんぶやる。</p>
+        <p><span class="q">実際の図の点（過去問で確認済み）：</span></p>
+        <ul>
+          <li><b>2023・2025 の「8点」</b>＝原点をぐるっと囲む格子点 $(\pm1,\pm1),(\pm1,0),(0,\pm1)$（3×3のマス目から真ん中 $(0,0)$ を抜いた8個）。</li>
+          <li><b>2024 の「5点」</b>＝直線 $x-2y=2$ の上に並ぶ $(4,1),(2,0),(0,-1),(-2,-2),(-4,-3)$ の5個。</li>
+        </ul>
+        <p><span class="q">写し方の例（2025, $A=\begin{pmatrix}2&-2\\-1&1\end{pmatrix}$）：</span>各点に $A$ を掛ける（$t=x-y$ として行き先は $(2t,-t)$）だけ。</p>
+        <div class="mbox"><table class="tbl" style="width:100%">
+          <thead><tr><th>元の点</th><th>$t=x-y$</th><th>→ 行き先</th></tr></thead>
+          <tbody>
+            <tr><td>$(1,0)$</td><td>1</td><td>$(2,-1)$</td></tr>
+            <tr><td>$(0,1)$</td><td>-1</td><td>$(-2,1)$</td></tr>
+            <tr><td>$(1,1)$</td><td>0</td><td>$(0,0)$ ←原点に潰れる</td></tr>
+            <tr><td>$(1,-1)$</td><td>2</td><td>$(4,-2)$</td></tr>
+            <tr><td>$(-1,-1)$</td><td>0</td><td>$(0,0)$ ←ここも原点</td></tr>
+          </tbody>
+        </table></div>
+        <p style="margin-bottom:0">8個やると、行き先は全部 $(2,-1)$ 方向の直線上に並ぶ（＝Im）。$(1,1)$ のように $x=y$ の点は原点に潰れる（＝Ker）。<b>2024はさらに極端で、5点がわざと1直線に並べてあり、5個とも同じ1点 $(2,-2)$ に写る</b>（核と平行な線はまるごと1点に潰れる、という狙い）。</p>
+      </div>
+    </div>
+
     <div class="infobox">
       <h2>解き方テンプレ</h2>
       <ol>
@@ -287,7 +316,7 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
 
     <div class="problem" data-id="q1_2024">
       <div class="phead"><span class="pno">2024年度 問1</span><span class="badge real">過去問（実物）</span><span class="badge algebra">プロット+Im/Ker</span></div>
-      <div class="stmt">$A=\begin{pmatrix}1&-2\\-1&2\end{pmatrix}$ の写像で5点をプロットし、$\mathrm{Im}f$・$\mathrm{Ker}f$ を図示せよ。</div>
+      <div class="stmt">$A=\begin{pmatrix}1&-2\\-1&2\end{pmatrix}$ の写像で5点をプロットし、$\mathrm{Im}f$・$\mathrm{Ker}f$ を図示せよ。<br><span style="color:var(--sub);font-size:12.5px">（図の5点＝直線 $x-2y=2$ 上の $(4,1),(2,0),(0,-1),(-2,-2),(-4,-3)$）</span></div>
       <div class="paper">✍️ $x-2y$ を計算して $(t,-t)$ に打つ</div>
       <button class="reveal">解答・解説を見る ▼</button>
       <div class="solution">
@@ -304,6 +333,7 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
             <li><b>Ker</b>＝原点に潰れる点＝行き先を0にする条件 $x-2y=0$（＝直線 $y=\tfrac12x$）。</li>
           </ul>
           <p>ポイントは「掛け算の結果を見て、共通のかたまりを見つける」こと。ここでは $x-2y$ がそれ。見つけたらもう終わり。</p>
+          <p><span class="q">この年の図の狙い</span>：与えられた5点 $(4,1),(2,0),(0,-1),(-2,-2),(-4,-3)$ は<b>全部 $x-2y=2$ を満たす（1直線に並んでいる）</b>。行き先は $(x-2y)\begin{pmatrix}1\\-1\end{pmatrix}=2\begin{pmatrix}1\\-1\end{pmatrix}$ で $t=x-2y=2$ に固定 → <b>5個とも同じ1点 $(2,-2)$ に写る</b>。核（$x-2y=0$）と平行な直線は、まるごと1点に潰れる。プロットすると5つの●が1点に集まって面白い。</p>
         </div>
       </div>
       <div class="conf"><span class="conf-label">理解度:</span><button data-v="ng">😟 ダメ</button><button data-v="maybe">🤔 あやしい</button><button data-v="ok">😎 OK</button></div>
@@ -311,7 +341,7 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
 
     <div class="problem" data-id="q1_2023">
       <div class="phead"><span class="pno">2023年度 問1</span><span class="badge real">過去問（実物）</span><span class="badge algebra">プロット+Ker</span></div>
-      <div class="stmt">$A=\begin{pmatrix}2&2\\1&1\end{pmatrix}$ の写像で8点をプロットし、核 $\mathrm{Ker}$ を求めよ。</div>
+      <div class="stmt">$A=\begin{pmatrix}2&2\\1&1\end{pmatrix}$ の写像で8点をプロットし、核 $\mathrm{Ker}$ を求めよ。<br><span style="color:var(--sub);font-size:12.5px">（図の8点＝原点まわりの格子点 $(\pm1,\pm1),(\pm1,0),(0,\pm1)$）</span></div>
       <button class="reveal">解答・解説を見る ▼</button>
       <div class="solution">
         <h4>分解</h4>
