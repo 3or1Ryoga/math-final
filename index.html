@@ -461,7 +461,7 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
         <h4>観察が最速</h4>
         <div class="explain">$\boldsymbol a_1,\boldsymbol a_2,\boldsymbol a_3$ はどれも第1・2成分が $(1,-1)$。よってどんな結合も「第2成分 $=$ −第1成分」になる。</div>
         <h4>$\boldsymbol a=(1,-1,0)$ → 表せる</h4>
-        <div class="explain">成分ごとに見比べて式を立てる（← ここが不安なら上の🧩ボックス）：<b>1番目の成分</b>から $c_1+c_2+c_3=1$、<b>3番目の成分</b>から $2c_1+c_2+3c_3=0$。差から $c_1+2c_3=-1$。$c_3=0$ とすると $c_1=-1,c_2=2$：</div>
+        <div class="explain">成分ごとに見比べて式を立てる（← ここが不安なら上の🧩ボックス）：<b>1番目の成分</b>から $c_1+c_2+c_3=1$、<b>3番目の成分</b>から $2c_1+c_2+3c_3=0$。差から $c_1+2c_3=-1$。$c_3$ は<b>自由に選べる</b>ので一番ラクな $c_3=0$ にすると $c_1=-1,c_2=2$：</div>
         <div class="mbox">$\boldsymbol a=-\boldsymbol a_1+2\boldsymbol a_2$　（検算 $-(1,-1,2)+2(1,-1,1)=(1,-1,0)$ ✓）</div>
         <h4>$\boldsymbol b=(0,3,1)$ → 表せない</h4>
         <div class="explain">第1成分から $c_1+c_2+c_3=0$。しかし第2成分は $-(c_1+c_2+c_3)=3$、つまり $0=3$ で<b>矛盾</b>。$\boldsymbol b$ は「第2成分 $=$ −第1成分」の平面に乗っていないので<b>表せない</b>。</div>
@@ -481,14 +481,19 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
       <button class="reveal">解答・解説を見る ▼</button>
       <div class="solution">
         <h4>$\boldsymbol a$ → 表せる</h4>
-        <div class="explain">連立 $c_1-c_2-c_3=2,\ -c_1-c_3=-1,\ -c_2-2c_3=1$。第2式より $c_1=1-c_3$、代入で第1式と第3式が一致（1本消える＝従属）。$c_3=0$ で $c_1=1,c_2=-1$：</div>
+        <div class="explain">連立 $c_1-c_2-c_3=2,\ -c_1-c_3=-1,\ -c_2-2c_3=1$。第2式より $c_1=1-c_3$、第3式より $c_2=-1-2c_3$。これを第1式に入れると $2=2$（＝いつも成立＝1本消える＝従属）。よって $c_3$ は<b>自由に選べる</b>ので、一番ラクな $c_3=0$ を選ぶと $c_1=1,c_2=-1$：</div>
         <div class="mbox">$\boldsymbol a=\boldsymbol a_1-\boldsymbol a_2$　（検算 $(1,-1,0)-(-1,0,-1)=(2,-1,1)$ ✓）</div>
         <h4>$\boldsymbol b$ → 表せない</h4>
         <div class="explain">同様に進めると第1式から $-c_2-2c_3=0$、第3式は $-c_2-2c_3=1$ で<b>矛盾</b>。∴ 表せない。</div>
         <div class="beginner">
           <h5>🔰 0からわかる解説</h5>
           <p>やることは前問と同じ。「$c_1\boldsymbol a_1+c_2\boldsymbol a_2+c_3\boldsymbol a_3=$ 目標」を成分ごとに書いて連立を解くだけ。</p>
-          <p>今回の材料 $\boldsymbol a_1,\boldsymbol a_2,\boldsymbol a_3$ は<b>実は独立3本に見えて1本が余分</b>（$\boldsymbol a_3$ が他2本で作れてしまう＝「一次従属」）。だから解くと式が1本消えて $c_3$ が自由に選べる → $c_3=0$ と決めれば簡単な倍率が出る。$\boldsymbol a$ は $\boldsymbol a_1-\boldsymbol a_2$ で作れる。</p>
+          <p><span class="q">❓ なぜ $c_3=0$ になるの？ → 実は「なる」んじゃなく「こっちが選んだ」</span><br>
+          今回の材料 $\boldsymbol a_1,\boldsymbol a_2,\boldsymbol a_3$ は<b>1本が余分</b>（$\boldsymbol a_3=\boldsymbol a_1+2\boldsymbol a_2$ で作れる＝「一次従属」）。そのせいで解くと<b>式が1本 $2=2$ になって消える</b>。すると効いている式は2本だけ、未知数は3つ → <b>1つ分、自由に決めていい</b>。それが $c_3$。</p>
+          <p>$c_3$ に<b>何を入れても正解</b>（$c_1=1-c_3,\ c_2=-1-2c_3$ が芋づるで決まる）。だから答えは無数にある：<br>
+          ・$c_3=0$ → $\boldsymbol a=\boldsymbol a_1-\boldsymbol a_2$<br>
+          ・$c_3=1$ → $\boldsymbol a=-3\boldsymbol a_2+\boldsymbol a_3$（これも $(2,-1,1)$ になる）<br>
+          試験は<b>1組書けばマル</b>なので、一番ラクな $c_3=0$ を選ぶだけ。<u>「自由変数は0にする」は計算結果ではなく“ラクするための選択”</u>。</p>
           <p>一方 $\boldsymbol b$ は解こうとすると $0=1$ 型の<b>あり得ない式</b>が出る＝作れない。<b>「表せる方は倍率を1組書く／表せない方は矛盾を見せて『表せない』と書く」</b>が満点の形。</p>
         </div>
       </div>
@@ -501,7 +506,7 @@ MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] }, chtml
       <button class="reveal">解答・解説を見る ▼</button>
       <div class="solution">
         <h4>$\boldsymbol a$ → 表せる</h4>
-        <div class="explain">第1式+第2式 → $c_1=3-c_3$、第1式から $c_2=2+c_3$。第3式は恒等成立（従属）。$c_3=0$：</div>
+        <div class="explain">第1式+第2式 → $c_1=3-c_3$、第1式から $c_2=2+c_3$。第3式は恒等成立（従属）→ $c_3$ は<b>自由に選べる</b>ので $c_3=0$ を選ぶ：</div>
         <div class="mbox">$\boldsymbol a=3\boldsymbol a_1+2\boldsymbol a_2$　（検算 $3(1,-2,1)+2(-1,1,-2)=(1,-4,-1)$ ✓）</div>
         <h4>$\boldsymbol b$ → 表せない</h4>
         <div class="explain">$c_1=1-c_3,\ c_2=1+c_3$ が出るが第3式に入れると $-1=0$ の<b>矛盾</b>。∴ 表せない。</div>
