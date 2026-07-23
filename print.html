@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>線形代数 最終試験 当日持ち込みプリント</title>
-<script>MathJax={tex:{inlineMath:[['$','$']]},chtml:{scale:0.92}};</script>
+<script>MathJax={tex:{inlineMath:[['$','$']]},chtml:{scale:0.9}};</script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
 <style>
   :root{--bg:#f4f6fb;--card:#fff;--ink:#1d2433;--sub:#5b6478;--line:#e3e8f0;
@@ -17,10 +17,9 @@
     border-bottom:1px solid var(--line);padding:9px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
   .bar h1{font-size:14px;margin:0;font-weight:800}
   .bar .tag{font-size:11px;font-weight:800;color:var(--write);background:var(--write-bg);border:1px solid #86efac;padding:3px 9px;border-radius:99px}
-  .bar a,.bar button{margin-left:0;font-size:12px;font-weight:800;text-decoration:none;border:1px solid var(--line);
+  .bar a,.bar button{font-size:12px;font-weight:800;text-decoration:none;border:1px solid var(--line);
     background:#fff;color:var(--accent);padding:5px 12px;border-radius:8px;cursor:pointer}
-  .bar a.back{color:var(--sub)}
-  .bar .sp{margin-left:auto}
+  .bar a.back{color:var(--sub)} .bar .sp{margin-left:auto}
   .bar button.print{border-color:var(--warn);background:var(--gold-bg);color:var(--warn)}
   main{max-width:900px;margin:0 auto;padding:16px 18px 80px}
   .note{font-size:12.5px;color:var(--sub);margin:6px 0 16px}
@@ -33,19 +32,20 @@
   .formulas{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
   .fbox{border:1px solid var(--line);border-radius:8px;padding:7px 11px;font-size:12px;background:#fff}
   .fbox b{color:var(--accent-d)}
-  .detail{margin-top:6px}
-  .pat{border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin:0 0 10px;background:#fff;break-inside:avoid}
-  .pat h3{font-size:13.5px;margin:0 0 6px;color:var(--accent-d);border-left:4px solid var(--accent);padding-left:8px}
-  .pat .see{font-size:12px;background:#eef2fb;border-radius:6px;padding:4px 8px;margin:0 0 6px}
-  .pat .see b{color:var(--warn)}
-  .pat ol{margin:5px 0 6px;padding-left:20px;font-size:12px}
-  .pat ol li{margin:2px 0}
-  .pat .ex{border-left:3px solid var(--write);background:var(--write-bg);border-radius:0 8px 8px 0;padding:6px 10px;margin:6px 0;font-size:12px}
-  .pat .ex .lab{font-weight:800;color:var(--write);font-size:11px;letter-spacing:.03em;display:block;margin-bottom:2px}
-  .pat .why{font-size:11.5px;color:var(--sub);margin:5px 0 0}
-  .pat .m{overflow-x:auto}
-  .pat svg{width:210px;height:210px;float:right;margin:0 0 4px 8px}
   .warnrow{background:var(--danger-bg);border:1px solid #fca5a5;color:var(--danger);border-radius:8px;padding:6px 10px;font-size:12px;margin:6px 0}
+  .pathead{margin:14px 0 6px;padding:5px 11px;background:#eef2fb;border-left:5px solid var(--accent);border-radius:0 8px 8px 0}
+  .pathead h3{font-size:14px;margin:0;color:var(--accent-d)}
+  .pathead .see{font-size:11.5px;color:var(--sub);margin:2px 0 0}
+  .pathead .see b{color:var(--warn)}
+  .prob{border:1px solid var(--line);border-radius:9px;padding:8px 11px;margin:0 0 9px;background:#fff;break-inside:avoid}
+  .prob .q{font-size:12px;margin:0 0 5px}
+  .prob .q .yr{display:inline-block;font-size:10.5px;font-weight:800;color:#fff;background:var(--accent);border-radius:5px;padding:1px 7px;margin-right:6px;vertical-align:middle}
+  .prob .q .yr.real{background:var(--danger)} .prob .q .yr.prac{background:var(--sub)}
+  .prob .a{border-left:3px solid var(--write);background:var(--write-bg);border-radius:0 8px 8px 0;padding:6px 10px;font-size:11.8px;line-height:1.6}
+  .prob .a .lab{font-weight:800;color:var(--write);font-size:10.5px;letter-spacing:.03em;display:block;margin-bottom:2px}
+  .prob .a b{color:#14663f}
+  .prob svg{width:200px;height:200px;float:right;margin:0 0 4px 8px}
+  .why{font-size:11px;color:var(--sub);margin:4px 0 0}
   .foot{margin-top:14px;border:1px solid var(--line);border-radius:10px;padding:10px 14px;background:#fff;font-size:12px}
   .foot h3{margin:0 0 6px;font-size:13px}
   .foot ul{margin:0;padding-left:20px} .foot li{margin:3px 0}
@@ -58,12 +58,13 @@
     .note{margin:2px 0 8px}
     h2.band{font-size:13px;margin:8px 0 5px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
     .pagebreak{break-after:page}
-    .detail{column-count:2;column-gap:9px}
-    .pat{padding:7px 9px;margin:0 0 8px}
-    .pat svg{width:150px;height:150px}
+    .qa{column-count:2;column-gap:9px}
+    .pathead{break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .prob{padding:6px 8px;margin:0 0 7px}
+    .prob svg{width:150px;height:150px}
     .formulas{gap:5px}
-    .fbox,.pat,.pat .see,.pat .ex,.foot,table.map th,table.map td.k,.warnrow{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    table.map{font-size:9px} .pat h3{font-size:11px} .pat ol,.pat .ex,.fbox{font-size:9.5px}
+    .fbox,.prob,.prob .a,.foot,table.map th,table.map td.k,.warnrow,.pathead{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    table.map{font-size:9px} .pathead h3{font-size:11px} .prob .q,.prob .a,.fbox{font-size:9.3px}
   }
 </style>
 </head>
@@ -78,141 +79,126 @@
 </div>
 
 <main>
-  <p class="note">関学「情報科学のための数学演習(線形代数)」西谷担当・最終試験。過去問 v23〜v25 実物ベース。この1部を印刷して持ち込み、見ながら解けばよい。ボールペンで書くと加点。<b>1枚目＝全体マップ、2枚目以降＝各問の手順と記入例（完成答案）。</b></p>
+  <p class="note">関学「情報科学のための数学演習(線形代数)」西谷担当・最終試験。過去問 v23〜v25 実物ベース。この1部を印刷して持ち込み、見ながら解けばよい。ボールペンで書くと加点。<b>1枚目＝全体マップ＆公式、2枚目以降＝学習サイトの全問題（15問）と完成答案。</b></p>
 
-  <!-- ============ サマリー（1枚目） ============ -->
-  <h2 class="band">🗺 全体マップ ― 5問×20点。まずここで「どのパターンか」を見分ける</h2>
+  <!-- ===== サマリー（1枚目） ===== -->
+  <h2 class="band">🗺 全体マップ ― 5問×20点。まず「どのパターンか」を見分ける</h2>
   <table class="map">
     <thead><tr><th>#</th><th>こう来たら（見分け）</th><th>手順（この順にやる）</th><th>答えの形</th></tr></thead>
     <tbody>
-      <tr><td class="k">①<br>写像+Im/Ker</td><td>2×2行列で図の点を写せ／Im・Kerを図示</td><td>各点に $A$ を掛ける→結果が $(数){\times}(ベクトル)$ の形→その向きがIm、$=0$ の条件がKer</td><td>Im=向きの直線(次元1)／Ker=$A\boldsymbol x{=}\boldsymbol 0$ の直線(次元1)</td></tr>
+      <tr><td class="k">①<br>写像+Im/Ker</td><td>2×2行列で図の点を写せ／Im・Kerを図示</td><td>各点に $A$ を掛ける→結果が $(数){\times}(ベクトル)$ →その向きがIm、$=0$ の条件がKer</td><td>Im=向きの直線(次元1)／Ker=$A\boldsymbol x{=}\boldsymbol 0$ の直線(次元1)</td></tr>
       <tr><td class="k">②<br>連立の一般解</td><td>連立を「特殊解＋基本解」で表せ</td><td>式を足し引きで消す→残る変数を $s,t$ に→$\boldsymbol x_0{+}s\boldsymbol u_1{+}t\boldsymbol u_2$</td><td>特殊解＋（自由変数の数だけ）基本解</td></tr>
-      <tr><td class="k">③<br>一次結合</td><td>$\boldsymbol a,\boldsymbol b$ を $\boldsymbol a_1,\boldsymbol a_2,\boldsymbol a_3$ の結合で表せ</td><td>$c_1\boldsymbol a_1{+}c_2\boldsymbol a_2{+}c_3\boldsymbol a_3{=}$目標 を成分ごとに連立→解く</td><td>倍率1組を書く／矛盾($0{=}1$型)が出たら「表せない」</td></tr>
+      <tr><td class="k">③<br>一次結合</td><td>$\boldsymbol a,\boldsymbol b$ を $\boldsymbol a_1,\boldsymbol a_2,\boldsymbol a_3$ の結合で表せ</td><td>$c_1\boldsymbol a_1{+}c_2\boldsymbol a_2{+}c_3\boldsymbol a_3{=}$目標 を成分ごとに連立→解く</td><td>倍率1組／矛盾($0{=}1$型)なら「表せない」</td></tr>
       <tr><td class="k">④<br>グラム・シュミット</td><td>ベクトルから正規直交基底を作れ</td><td>影を引いて直角に→長さ1に、を1本ずつ</td><td>互いに直角・長さ1の $\boldsymbol e_1,\boldsymbol e_2,\boldsymbol e_3$</td></tr>
       <tr><td class="k">⑤<br>Im/Ker 次元基底</td><td>$3{\times}4$行列 $f(\boldsymbol x){=}A\boldsymbol x$ のIm・Kerの次元と基底</td><td>掃き出し→rank $r$→Im基底＝元の列/Ker＝$A\boldsymbol x{=}\boldsymbol0$を解く</td><td>Im次元$=r$／Ker次元$=$列数$-r$</td></tr>
       <tr><td class="k">⑥<br>直交補空間</td><td>$V$ の $V^\perp$ を求めよ</td><td>$V$の定義式の係数ベクトルを並べる＝そのまま $V^\perp$ の基底</td><td>係数ベクトルが張る空間／$\dim V{+}\dim V^\perp{=}$全体</td></tr>
       <tr><td class="k">⑦<br>対角化</td><td>行列を対角化せよ</td><td>$\det(A{-}\lambda I){=}0$で $\lambda$→各$\lambda$で $(A{-}\lambda I)\boldsymbol x{=}\boldsymbol0$→固有ベクトルを並べ $P$</td><td>$P^{-1}AP{=}\mathrm{diag}(\lambda_1,\lambda_2,\lambda_3)$</td></tr>
     </tbody>
   </table>
-
-  <div class="warnrow">🚨 ③の罠：材料 $\boldsymbol a_1,\boldsymbol a_2,\boldsymbol a_3$ はわざと従属（1本が余分）。$\boldsymbol a$ は表せる（倍率は無数→1組書けばOK）、$\boldsymbol b$ は途中で $0{=}3$ 等の矛盾→「表せない」が答え。3年連続。</div>
-
+  <div class="warnrow">🚨 ③の罠：材料 $\boldsymbol a_1,\boldsymbol a_2,\boldsymbol a_3$ はわざと従属（1本が余分）。$\boldsymbol a$ は表せる（倍率は無数→1組でOK）、$\boldsymbol b$ は途中で $0{=}3$ 等の矛盾→「表せない」が答え。3年連続。</div>
   <div class="formulas">
-    <div class="fbox"><b>行列×ベクトル</b>：$\begin{pmatrix}a&b\\c&d\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}ax+by\\cx+dy\end{pmatrix}$（横に掛けて足す）</div>
+    <div class="fbox"><b>行列×ベクトル</b>：$\begin{pmatrix}a&b\\c&d\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}=\begin{pmatrix}ax+by\\cx+dy\end{pmatrix}$</div>
     <div class="fbox"><b>行列式・逆行列</b>：$\det=ad-bc$、$A^{-1}=\frac{1}{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}$</div>
     <div class="fbox"><b>内積・長さ</b>：$\boldsymbol a\cdot\boldsymbol b=\sum a_ib_i$、$\|\boldsymbol x\|=\sqrt{\boldsymbol x\cdot\boldsymbol x}$</div>
-    <div class="fbox"><b>次元定理</b>：$\dim\mathrm{Im}f+\dim\mathrm{Ker}f=$（列の数＝定義域の次元）</div>
+    <div class="fbox"><b>次元定理</b>：$\dim\mathrm{Im}f+\dim\mathrm{Ker}f=$列の数</div>
     <div class="fbox"><b>グラム・シュミット</b>：$\boldsymbol u_k=\boldsymbol x_k-\sum(\boldsymbol x_k\cdot\boldsymbol e_i)\boldsymbol e_i$、$\boldsymbol e_k=\boldsymbol u_k/\|\boldsymbol u_k\|$</div>
-    <div class="fbox"><b>対角化の検算</b>：$\lambda$の和$=$対角和$\mathrm{tr}A$、$\lambda$の積$=\det A$。各 $A\boldsymbol p=\lambda\boldsymbol p$</div>
+    <div class="fbox"><b>対角化の検算</b>：$\sum\lambda=\mathrm{tr}A$、$\prod\lambda=\det A$、各 $A\boldsymbol p=\lambda\boldsymbol p$</div>
   </div>
 
   <div class="pagebreak"></div>
 
-  <!-- ============ 詳細（2枚目以降・2段組） ============ -->
-  <h2 class="band g">📝 各パターンの手順と記入例（この形をそのまま答案に書く）</h2>
-  <div class="detail">
+  <!-- ===== 全問題＋完成答案 ===== -->
+  <h2 class="band g">📝 学習サイトの全問題（15問）と完成答案 ― この形をそのまま書く</h2>
+  <div class="qa">
 
-    <div class="pat">
-      <h3>① 写像プロット + Im/Ker</h3>
+    <div class="pathead"><h3>① 写像プロット + Im/Ker</h3><div class="see"><b>手順</b>：各点に $A$ を掛け $(数){\times}(ベクトル)$ に。その向き＝Im、$=0$ の条件＝Ker（どちらも直線・次元1）</div></div>
+
+    <div class="prob">
+      <div class="q"><span class="yr real">2025 問1</span>$A=\begin{pmatrix}2&-2\\-1&1\end{pmatrix}$。図の8点 $(\pm1,\pm1),(\pm1,0),(0,\pm1)$ を写し、$\mathrm{Im}f$・$\mathrm{Ker}f$ の次元と基底を求め図示せよ。</div>
       <svg viewBox="0 0 380 380" width="360" height="360" style="max-width:100%;background:#fff;border-radius:8px" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arp1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#94a3b8"/></marker></defs><line x1="20" y1="360" x2="20" y2="20" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="360" x2="360" y2="360" stroke="#eef2f7" stroke-width="1"/><line x1="54" y1="360" x2="54" y2="20" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="326" x2="360" y2="326" stroke="#eef2f7" stroke-width="1"/><line x1="88" y1="360" x2="88" y2="20" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="292" x2="360" y2="292" stroke="#eef2f7" stroke-width="1"/><line x1="122" y1="360" x2="122" y2="20" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="258" x2="360" y2="258" stroke="#eef2f7" stroke-width="1"/><line x1="156" y1="360" x2="156" y2="20" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="224" x2="360" y2="224" stroke="#eef2f7" stroke-width="1"/><line x1="190" y1="360" x2="190" y2="20" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="190" x2="360" y2="190" stroke="#eef2f7" stroke-width="1"/><line x1="224" y1="360" x2="224" y2="20" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="156" x2="360" y2="156" stroke="#eef2f7" stroke-width="1"/><line x1="258" y1="360" x2="258" y2="20" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="122" x2="360" y2="122" stroke="#eef2f7" stroke-width="1"/><line x1="292" y1="360" x2="292" y2="20" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="88" x2="360" y2="88" stroke="#eef2f7" stroke-width="1"/><line x1="326" y1="360" x2="326" y2="20" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="54" x2="360" y2="54" stroke="#eef2f7" stroke-width="1"/><line x1="360" y1="360" x2="360" y2="20" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="20" x2="360" y2="20" stroke="#eef2f7" stroke-width="1"/><line x1="20" y1="190" x2="360" y2="190" stroke="#334155" stroke-width="1.5"/><line x1="190" y1="360" x2="190" y2="20" stroke="#334155" stroke-width="1.5"/><text x="20" y="202" font-size="8" fill="#94a3b8" text-anchor="middle">-5</text><text x="181" y="363" font-size="8" fill="#94a3b8" text-anchor="middle">-5</text><text x="54" y="202" font-size="8" fill="#94a3b8" text-anchor="middle">-4</text><text x="181" y="329" font-size="8" fill="#94a3b8" text-anchor="middle">-4</text><text x="88" y="202" font-size="8" fill="#94a3b8" text-anchor="middle">-3</text><text x="181" y="295" font-size="8" fill="#94a3b8" text-anchor="middle">-3</text><text x="122" y="202" font-size="8" fill="#94a3b8" text-anchor="middle">-2</text><text x="181" y="261" font-size="8" fill="#94a3b8" text-anchor="middle">-2</text><text x="156" y="202" font-size="8" fill="#94a3b8" text-anchor="middle">-1</text><text x="181" y="227" font-size="8" fill="#94a3b8" text-anchor="middle">-1</text><text x="224" y="202" font-size="8" fill="#94a3b8" text-anchor="middle">1</text><text x="181" y="159" font-size="8" fill="#94a3b8" text-anchor="middle">1</text><text x="258" y="202" font-size="8" fill="#94a3b8" text-anchor="middle">2</text><text x="181" y="125" font-size="8" fill="#94a3b8" text-anchor="middle">2</text><text x="292" y="202" font-size="8" fill="#94a3b8" text-anchor="middle">3</text><text x="181" y="91" font-size="8" fill="#94a3b8" text-anchor="middle">3</text><text x="326" y="202" font-size="8" fill="#94a3b8" text-anchor="middle">4</text><text x="181" y="57" font-size="8" fill="#94a3b8" text-anchor="middle">4</text><text x="360" y="202" font-size="8" fill="#94a3b8" text-anchor="middle">5</text><text x="181" y="23" font-size="8" fill="#94a3b8" text-anchor="middle">5</text><line x1="20.0" y1="360.0" x2="360.0" y2="20.0" stroke="#d97706" stroke-width="2" stroke-dasharray="6 4"/><text x="298.8" y="67.6" font-size="11" font-weight="700" fill="#d97706">Ker f</text><line x1="20.0" y1="105.0" x2="360.0" y2="275.0" stroke="#0f9d6b" stroke-width="2"/><text x="305.6" y="230.8" font-size="11" font-weight="700" fill="#0f9d6b">Im f</text><line x1="224.0" y1="156.0" x2="194.9" y2="185.1" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arp1)"/><line x1="224.0" y1="224.0" x2="319.4" y2="255.8" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arp1)"/><line x1="156.0" y1="156.0" x2="60.6" y2="124.2" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arp1)"/><line x1="156.0" y1="224.0" x2="185.1" y2="194.9" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arp1)"/><line x1="224.0" y1="190.0" x2="253.1" y2="219.1" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arp1)"/><line x1="156.0" y1="190.0" x2="126.9" y2="160.9" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arp1)"/><line x1="190.0" y1="156.0" x2="129.0" y2="156.0" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arp1)"/><line x1="190.0" y1="224.0" x2="251.0" y2="224.0" stroke="#cbd5e1" stroke-width="1" marker-end="url(#arp1)"/><circle cx="190" cy="190" r="4.5" fill="#dc2626"/><circle cx="326" cy="258" r="4.5" fill="#dc2626"/><circle cx="54" cy="122" r="4.5" fill="#dc2626"/><circle cx="190" cy="190" r="4.5" fill="#dc2626"/><circle cx="258" cy="224" r="4.5" fill="#dc2626"/><circle cx="122" cy="156" r="4.5" fill="#dc2626"/><circle cx="122" cy="156" r="4.5" fill="#dc2626"/><circle cx="258" cy="224" r="4.5" fill="#dc2626"/><circle cx="224" cy="156" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="224" cy="224" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="156" cy="156" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="156" cy="224" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="224" cy="190" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="156" cy="190" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="190" cy="156" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="190" cy="224" r="4" fill="#fff" stroke="#2563eb" stroke-width="2"/></svg>
-      <div class="see"><b>見分け</b>：2×2行列で「図の点はどこへ写るか、Im・Kerを図示」</div>
-      <ol>
-        <li>各点 $(x,y)$ に $A$ を掛ける</li>
-        <li>結果が $(数){\times}(固定ベクトル)$ になる→その固定ベクトルの向きの直線が <b>Im</b></li>
-        <li>結果を $0$ にする条件の直線が <b>Ker</b></li>
-        <li>両方とも直線→次元1、基底はその向き1本</li>
-      </ol>
-      <div class="ex"><span class="lab">記入例（2025 $A=\begin{pmatrix}2&-2\\-1&1\end{pmatrix}$）</span>
-      <div class="m">$A\begin{pmatrix}x\\y\end{pmatrix}=(x-y)\begin{pmatrix}2\\-1\end{pmatrix}$</div>
-      例：$(1,0){\to}(2,-1)$、$(1,1){\to}(0,0)$、$(0,1){\to}(-2,1)$。<br>
-      $\mathrm{Im}f=\langle(2,-1)\rangle$（次元1, 直線 $y=-\tfrac12x$）／$\mathrm{Ker}f:\,x-y=0$（次元1, 基底$(1,1)$）</div>
-      <p class="why">全成分が同じ「$x-y$」のかたまりになるので、平面全体が1本の直線に潰れる。潰れて原点に行く点の集まりがKer。</p>
+      <div class="a"><span class="lab">完成答案</span>$A\begin{pmatrix}x\\y\end{pmatrix}=(x-y)\begin{pmatrix}2\\-1\end{pmatrix}$。各点 $t{=}x{-}y$ で $(2t,-t)$：$(1,0){\to}(2,-1)$, $(1,1){\to}(0,0)$, $(0,1){\to}(-2,1)$, $(1,-1){\to}(4,-2)$。<br><b>$\mathrm{Im}f=\langle(2,-1)\rangle$</b>（次元1, 直線 $y{=}-\tfrac12x$）。<b>$\mathrm{Ker}f: x-y=0$</b>（次元1, 基底 $(1,1)$）。$\dim\mathrm{Im}f{+}\dim\mathrm{Ker}f{=}1{+}1{=}2$ ✓</div>
     </div>
 
-    <div class="pat">
-      <h3>② 連立1次方程式の一般解</h3>
-      <div class="see"><b>見分け</b>：「一般解を<b>特殊解＋基本解の1次結合</b>で表せ」</div>
-      <ol>
-        <li>式どうしを足し引きして変数を消す（掃き出し）</li>
-        <li>1つに決まらない変数を $s,t$ と置く（残る数＝未知数−使える式の本数）</li>
-        <li>「基準の1個($s{=}t{=}0$)＋ツマミで動く向き」で書く</li>
-      </ol>
-      <div class="ex"><span class="lab">記入例（2025・未知数 $x,y,z,u$）</span>
-      掃き出すと $z{=}2,\ y{=}0,\ x{=}2-2u$、$u$ が自由。
-      <div class="m">$\begin{pmatrix}x\\y\\z\\u\end{pmatrix}=\begin{pmatrix}2\\0\\2\\0\end{pmatrix}+t\begin{pmatrix}-2\\0\\0\\1\end{pmatrix}$</div>
-      （特殊解＋基本解1本）</div>
-      <p class="why">式より未知数が多いと1つ自由に選べる。そこにツマミ $t$ を置くだけ。特殊解を元式に入れて右辺と合えば正解。</p>
+    <div class="prob">
+      <div class="q"><span class="yr real">2024 問1</span>$A=\begin{pmatrix}1&-2\\-1&2\end{pmatrix}$。図の5点＝直線 $x-2y=2$ 上の $(4,1),(2,0),(0,-1),(-2,-2),(-4,-3)$ を写し、Im・Kerを図示せよ。</div>
+      <div class="a"><span class="lab">完成答案</span>$A\begin{pmatrix}x\\y\end{pmatrix}=(x-2y)\begin{pmatrix}1\\-1\end{pmatrix}$。5点はすべて $x{-}2y{=}2$ なので<b>全部 $(2,-2)$ に写る</b>（核と平行な線は1点に潰れる）。<b>$\mathrm{Im}f=\langle(1,-1)\rangle$</b>（直線 $y{=}-x$）。<b>$\mathrm{Ker}f: x-2y=0$</b>（直線 $y{=}\tfrac12x$, 方向 $(2,1)$）。</div>
     </div>
 
-    <div class="pat">
-      <h3>③ 一次結合で表す（罠あり）</h3>
-      <div class="see"><b>見分け</b>：「$\boldsymbol a,\boldsymbol b$ を $\boldsymbol a_1,\boldsymbol a_2,\boldsymbol a_3$ の一次結合で表せ」</div>
-      <ol>
-        <li>$c_1\boldsymbol a_1{+}c_2\boldsymbol a_2{+}c_3\boldsymbol a_3=$目標 を<b>成分ごと</b>に連立にする</li>
-        <li>解く。従属なので式が1本消え、$c_3$ が自由→ラクな $c_3=0$ を選ぶ</li>
-        <li>矛盾（$0=1$型）が出たら「表せない」</li>
-      </ol>
-      <div class="ex"><span class="lab">記入例（2025 $\boldsymbol a_1{=}(1,-1,2),\boldsymbol a_2{=}(1,-1,1),\boldsymbol a_3{=}(1,-1,3)$）</span>
-      $\boldsymbol a=(1,-1,0)$：$c_3{=}0$ で $\boldsymbol a=-\boldsymbol a_1+2\boldsymbol a_2$（検算 $-(1,-1,2)+2(1,-1,1)=(1,-1,0)$）。<br>
-      $\boldsymbol b=(0,3,1)$：1成分目 $c_1{+}c_2{+}c_3{=}0$ なのに2成分目が $-(c_1{+}c_2{+}c_3){=}3$ で $0{=}3$ 矛盾 → <b>表せない</b>。</div>
-      <p class="why">2つのベクトルが等しい＝全成分が一致。だから成分ごとに式が立つ。材料が余分（従属）だと $c_3$ を好きに選べる（0にすると簡単）。</p>
+    <div class="prob">
+      <div class="q"><span class="yr real">2023 問1</span>$A=\begin{pmatrix}2&2\\1&1\end{pmatrix}$。図の8点（原点まわりの格子点）を写し、核 $\mathrm{Ker}$ を求めよ。</div>
+      <div class="a"><span class="lab">完成答案</span>$A\begin{pmatrix}x\\y\end{pmatrix}=(x+y)\begin{pmatrix}2\\1\end{pmatrix}$。<b>$\mathrm{Im}f=\langle(2,1)\rangle$</b>（$y{=}\tfrac12x$）。<b>$\mathrm{Ker}f: x+y=0$</b>（$y{=}-x$）。$x{+}y{=}0$ の点（例 $(1,-1)$）は原点へ写る。</div>
     </div>
 
-    <div class="pat">
-      <h3>④ グラム・シュミット（正規直交化）</h3>
-      <div class="see"><b>見分け</b>：「次のベクトルから正規直交基底を作れ」</div>
-      <ol>
-        <li>1本目：長さで割るだけ $\boldsymbol e_1=\boldsymbol x_1/\|\boldsymbol x_1\|$</li>
-        <li>2本目：$\boldsymbol e_1$ 方向の影を引く→長さ1 に</li>
-        <li>3本目：$\boldsymbol e_1,\boldsymbol e_2$ 両方の影を引く→長さ1 に</li>
-      </ol>
-      <div class="ex"><span class="lab">記入例（$\boldsymbol x_1{=}(1,0,0),\boldsymbol x_2{=}(1,1,0),\boldsymbol x_3{=}(1,1,1)$）</span>
-      $\boldsymbol e_1{=}(1,0,0)$。$\boldsymbol u_2=(1,1,0)-1{\cdot}(1,0,0)=(0,1,0)=\boldsymbol e_2$。$\boldsymbol u_3=(1,1,1)-(1,0,0)-(0,1,0)=(0,0,1)=\boldsymbol e_3$。<br>
-      答：$\{(1,0,0),(0,1,0),(0,0,1)\}$</div>
-      <p class="why">「影（内積分）を引くと直角になる」を繰り返すだけ。途中で残りが $\boldsymbol0$ なら元が従属。</p>
+    <div class="pathead"><h3>② 連立1次方程式の一般解</h3><div class="see"><b>手順</b>：式を足し引きで消す→決まらない変数を $s,t$ に→「特殊解＋基本解」で書く（基本解の本数＝自由変数の数）</div></div>
+
+    <div class="prob">
+      <div class="q"><span class="yr real">2025 問2</span>次を解き一般解を「特殊解＋基本解の1次結合」で表せ。$\begin{cases}x-y-z+2u=0\\-x-y+2z-2u=2\\x-y-2z+2u=-2\\x-y-5z+2u=-8\end{cases}$</div>
+      <div class="a"><span class="lab">完成答案</span>第3−第1: $-z{=}-2{\Rightarrow}z{=}2$。第1+第2: $-2y{+}z{=}2{\Rightarrow}y{=}0$。$x{=}y{+}z{-}2u{=}2{-}2u$。自由 $u{=}t$。<br>$\begin{pmatrix}x\\y\\z\\u\end{pmatrix}=\begin{pmatrix}2\\0\\2\\0\end{pmatrix}+t\begin{pmatrix}-2\\0\\0\\1\end{pmatrix}$（検算: 特殊解代入 $(0,2,-2,-8)$ ✓）</div>
     </div>
 
-    <div class="pat">
-      <h3>⑤ 線形写像の Im/Ker の次元と基底</h3>
-      <div class="see"><b>見分け</b>：$3{\times}4$行列 $f(\boldsymbol x){=}A\boldsymbol x$ のImとKerの次元・基底</div>
-      <ol>
-        <li>掃き出して rank $r$ を数える</li>
-        <li>Im：次元$=r$、基底は<b>元の $A$ の（先頭1が立つ）列</b></li>
-        <li>Ker：次元$=$列数$-r$、$A\boldsymbol x{=}\boldsymbol0$ を解いた基本解</li>
-      </ol>
-      <div class="ex"><span class="lab">記入例（2024 $A=\begin{pmatrix}1&-1&0&0\\0&1&1&-1\\-1&0&-1&1\end{pmatrix}$, rank2）</span>
-      $\mathrm{Im}f$：次元2、基底 $\{(1,0,-1),(-1,1,0)\}$（元の1・2列）。<br>
-      $\mathrm{Ker}f$：次元 $4{-}2{=}2$、基底 $\{(-1,-1,1,0),(1,1,0,1)\}$。</div>
-      <p class="why"><b>Imの基底は掃き出し後でなく“元の列”</b>（行変形は列空間を変えるため）。ここが最大の減点ポイント。</p>
+    <div class="prob">
+      <div class="q"><span class="yr real">2023 問2</span>次を解き規定の形で表せ（未知数5・式3）。$\begin{cases}-x_1+x_2+x_3+2x_4-x_5=1\\-x_1+2x_2+x_3-x_4+x_5=1\\x_1-x_2-x_3-x_4-x_5=-4\end{cases}$</div>
+      <div class="a"><span class="lab">完成答案</span>第3+第1: $x_4{-}2x_5{=}-3$。第2−第1: $x_2{-}3x_4{+}2x_5{=}0$。自由 $x_3{=}s,x_5{=}t$。$x_4{=}-3{+}2t$, $x_2{=}-9{+}4t$, $x_1{=}-16{+}s{+}7t$。<br>$\boldsymbol x=\begin{pmatrix}-16\\-9\\0\\-3\\0\end{pmatrix}+s\begin{pmatrix}1\\0\\1\\0\\0\end{pmatrix}+t\begin{pmatrix}7\\4\\0\\2\\1\end{pmatrix}$</div>
     </div>
 
-    <div class="pat">
-      <h3>⑥ 直交補空間 $V^\perp$</h3>
-      <div class="see"><b>見分け</b>：条件式で決まる $V$ の $V^\perp$ を求めよ</div>
-      <ol>
-        <li>$V$ が「$\dots=0$」の式で定義されている</li>
-        <li>その<b>式の係数を並べたベクトル</b>がそのまま $V^\perp$ の基底</li>
-        <li>$\dim V+\dim V^\perp=$全体次元 で検算</li>
-      </ol>
-      <div class="ex"><span class="lab">記入例（2025 $2x_1{-}2x_2{+}x_3{=}0,\ x_1{-}2x_2{+}2x_3{=}0$）</span>
-      $V=\langle(2,3,2)\rangle$（次元1）。<br>
-      $V^\perp=\langle(2,-2,1),(1,-2,2)\rangle$（次元2）。検算：どちらも $(2,3,2)$ と内積0、$1{+}2{=}3$。</div>
-      <p class="why">$V$は「係数ベクトルと垂直」な点の集まり。だから係数ベクトルたちが張る空間こそ「$V$に垂直な方向全部」＝$V^\perp$。</p>
+    <div class="pathead"><h3>③ 一次結合で表す（罠あり）</h3><div class="see"><b>手順</b>：成分ごとに連立→従属で $c_3$ 自由→ラクな $c_3{=}0$。<b>矛盾（$0{=}$数）が出たら「表せない」</b></div></div>
+
+    <div class="prob">
+      <div class="q"><span class="yr real">2025 問3</span>$\boldsymbol a=(1,-1,0)$, $\boldsymbol b=(0,3,1)$ を $\boldsymbol a_1=(1,-1,2),\boldsymbol a_2=(1,-1,1),\boldsymbol a_3=(1,-1,3)$ の一次結合で表せ。</div>
+      <div class="a"><span class="lab">完成答案</span><b>$\boldsymbol a$：</b>1成分 $c_1{+}c_2{+}c_3{=}1$、3成分 $2c_1{+}c_2{+}3c_3{=}0$。差 $c_1{+}2c_3{=}-1$。$c_3{=}0$→$c_1{=}-1,c_2{=}2$。<b>$\boldsymbol a=-\boldsymbol a_1+2\boldsymbol a_2$</b>（検算 $-(1,-1,2){+}2(1,-1,1){=}(1,-1,0)$✓）。<br><b>$\boldsymbol b$：</b>1成分 $c_1{+}c_2{+}c_3{=}0$ だが2成分は $-(c_1{+}c_2{+}c_3){=}3$ で $0{=}3$ 矛盾 → <b>表せない</b>。</div>
     </div>
 
-    <div class="pat">
-      <h3>⑦ 行列の対角化</h3>
-      <div class="see"><b>見分け</b>：「対角化可能ならば変換行列を求めて対角化せよ」</div>
-      <ol>
-        <li>$\det(A-\lambda I)=0$ を解いて固有値 $\lambda$（整数を代入で探す）</li>
-        <li>各 $\lambda$ で $(A-\lambda I)\boldsymbol x=\boldsymbol0$ を解き固有ベクトル</li>
-        <li>固有値が全部違えば可能。固有ベクトルを縦に並べ $P$</li>
-      </ol>
-      <div class="ex"><span class="lab">記入例（2025 $A=\begin{pmatrix}6&4&-4\\-3&-2&3\\5&4&-3\end{pmatrix}$）</span>
-      $\lambda=1,2,-2$。$\boldsymbol p_1{=}(0,1,1),\boldsymbol p_2{=}(1,0,1),\boldsymbol p_3{=}(1,-1,1)$。
-      <div class="m">$P=\begin{pmatrix}0&1&1\\1&0&-1\\1&1&1\end{pmatrix},\ P^{-1}AP=\begin{pmatrix}1&0&0\\0&2&0\\0&0&-2\end{pmatrix}$</div>
-      検算：$A\boldsymbol p_2=(2,0,2)=2\boldsymbol p_2$。$1{+}2{-}2=1=\mathrm{tr}A$。</div>
-      <p class="why">「掛けても向きが変わらない特別な方向」が固有ベクトル、その倍率が固有値。その方向を軸にすると対角になる。並べる順＝対角の順。</p>
+    <div class="prob">
+      <div class="q"><span class="yr real">2024 問3</span>$\boldsymbol a=(2,-1,1)$, $\boldsymbol b=(-1,1,1)$ を $\boldsymbol a_1=(1,-1,0),\boldsymbol a_2=(-1,0,-1),\boldsymbol a_3=(-1,-1,-2)$ の一次結合で表せ。</div>
+      <div class="a"><span class="lab">完成答案</span><b>$\boldsymbol a$：</b>連立 $c_1{-}c_2{-}c_3{=}2,\ -c_1{-}c_3{=}-1,\ -c_2{-}2c_3{=}1$。第2→$c_1{=}1{-}c_3$、第3→$c_2{=}-1{-}2c_3$、第1に代入で $2{=}2$（従属）。$c_3{=}0$→$c_1{=}1,c_2{=}-1$。<b>$\boldsymbol a=\boldsymbol a_1-\boldsymbol a_2$</b>（検算 $(1,-1,0){-}(-1,0,-1){=}(2,-1,1)$✓）。<br><b>$\boldsymbol b$：</b>進めると第1から $-c_2{-}2c_3{=}0$、第3は $=1$ で矛盾 → <b>表せない</b>。</div>
+    </div>
+
+    <div class="prob">
+      <div class="q"><span class="yr real">2023 問3</span>$\boldsymbol a=(1,-4,-1)$, $\boldsymbol b=(0,-1,0)$ を $\boldsymbol a_1=(1,-2,1),\boldsymbol a_2=(-1,1,-2),\boldsymbol a_3=(2,-3,3)$ の一次結合で表せ。</div>
+      <div class="a"><span class="lab">完成答案</span><b>$\boldsymbol a$：</b>第1+第2→$c_1{=}3{-}c_3$、第1→$c_2{=}2{+}c_3$、第3は恒等成立（従属）。$c_3{=}0$。<b>$\boldsymbol a=3\boldsymbol a_1+2\boldsymbol a_2$</b>（検算 $3(1,-2,1){+}2(-1,1,-2){=}(1,-4,-1)$✓）。<br><b>$\boldsymbol b$：</b>$c_1{=}1{-}c_3,c_2{=}1{+}c_3$ だが第3で $-1{=}0$ 矛盾 → <b>表せない</b>。</div>
+    </div>
+
+    <div class="pathead"><h3>④ グラム・シュミット（正規直交化）</h3><div class="see"><b>手順</b>：1本目は長さで割る。2本目以降は既に作った $\boldsymbol e_i$ 方向の影 $(\boldsymbol x\cdot\boldsymbol e_i)\boldsymbol e_i$ を引いてから長さ1に</div></div>
+
+    <div class="prob">
+      <div class="q"><span class="yr real">2023=2024 問4</span>$\boldsymbol x_1=(1,0,0),\boldsymbol x_2=(1,1,0),\boldsymbol x_3=(1,1,1)$ から $\mathbb R^3$ の正規直交基底を作れ。</div>
+      <div class="a"><span class="lab">完成答案</span>$\boldsymbol e_1{=}(1,0,0)$。$\boldsymbol u_2{=}(1,1,0){-}1{\cdot}(1,0,0){=}(0,1,0){=}\boldsymbol e_2$。$\boldsymbol u_3{=}(1,1,1){-}(1,0,0){-}(0,1,0){=}(0,0,1){=}\boldsymbol e_3$。<b>答 $\{(1,0,0),(0,1,0),(0,0,1)\}$</b>。</div>
+    </div>
+
+    <div class="prob">
+      <div class="q"><span class="yr prac">類題（分数）</span>$\boldsymbol x_1=(1,1,0),\boldsymbol x_2=(1,0,1),\boldsymbol x_3=(0,1,1)$ を直交化せよ。</div>
+      <div class="a"><span class="lab">完成答案</span>$\boldsymbol e_1{=}\tfrac1{\sqrt2}(1,1,0)$。$\boldsymbol u_2{=}(1,0,1){-}\tfrac12(1,1,0){=}(\tfrac12,-\tfrac12,1)$, $\boldsymbol e_2{=}\tfrac1{\sqrt6}(1,-1,2)$。$\boldsymbol u_3{=}(-\tfrac23,\tfrac23,\tfrac23)$, $\boldsymbol e_3{=}\tfrac1{\sqrt3}(-1,1,1)$。</div>
+    </div>
+
+    <div class="pathead"><h3>⑤ 線形写像の Im/Ker の次元と基底</h3><div class="see"><b>手順</b>：掃き出し→rank $r$。Im次元$=r$（基底は<b>元の列</b>）。Ker次元$=$列数$-r$（$A\boldsymbol x{=}\boldsymbol0$ の基本解）</div></div>
+
+    <div class="prob">
+      <div class="q"><span class="yr real">2024 問5</span>$A=\begin{pmatrix}1&-1&0&0\\0&1&1&-1\\-1&0&-1&1\end{pmatrix}$, $f(\boldsymbol x){=}A\boldsymbol x$ の Im・Ker の次元と基底。</div>
+      <div class="a"><span class="lab">完成答案</span>掃き出し→rank2。<b>$\mathrm{Im}f$：次元2</b>, 基底 $\{(1,0,-1),(-1,1,0)\}$（元の1・2列）。<b>$\mathrm{Ker}f$：次元 $4{-}2{=}2$</b>（$x_3{=}s,x_4{=}t$→$x_2{=}-s{+}t,x_1{=}x_2$）, 基底 $\{(-1,-1,1,0),(1,1,0,1)\}$。</div>
+    </div>
+
+    <div class="prob">
+      <div class="q"><span class="yr real">2023 問5</span>$A=\begin{pmatrix}1&0&-2&1\\4&1&-6&3\\1&1&0&0\end{pmatrix}$ の Im・Ker の次元と基底。</div>
+      <div class="a"><span class="lab">完成答案</span>第2−4·第1$=(0,1,2,-1)$、第3−第1$=(0,1,2,-1)$→差で0行→rank2。<b>$\mathrm{Im}f$：次元2</b>, 基底 $\{(1,4,1),(0,1,1)\}$。<b>$\mathrm{Ker}f$：次元2</b>（$x_3{=}s,x_4{=}t$→$x_2{=}-2s{+}t,x_1{=}2s{-}t$）, 基底 $\{(2,-2,1,0),(-1,1,0,1)\}$。</div>
+    </div>
+
+    <div class="pathead"><h3>⑥ 直交補空間 $V^\perp$</h3><div class="see"><b>手順</b>：$V$ が式で定義されているなら、その<b>式の係数ベクトル</b>がそのまま $V^\perp$ の基底。$\dim V{+}\dim V^\perp{=}$全体で検算</div></div>
+
+    <div class="prob">
+      <div class="q"><span class="yr real">2025 問4</span>$V=\{(x_1,x_2,x_3)\in\mathbb R^3;\ 2x_1-2x_2+x_3=0,\ x_1-2x_2+2x_3=0\}$ の $V^\perp$ を求めよ。</div>
+      <div class="a"><span class="lab">完成答案</span>差→$x_1{-}x_3{=}0$→$x_1{=}x_3{=}t$、第2代入→$x_2{=}\tfrac32t$。<b>$V=\langle(2,3,2)\rangle$</b>（次元1）。<b>$V^\perp=\langle(2,-2,1),(1,-2,2)\rangle$</b>（次元2）。検算: どちらも $(2,3,2)$ と内積0、$1{+}2{=}3$ ✓</div>
+    </div>
+
+    <div class="prob">
+      <div class="q"><span class="yr real">2024 問4</span>$V=\{(x_1,x_2,x_3)\in\mathbb R^3;\ x_1+x_3=0,\ x_1-x_2=0\}$ の $V^\perp$ を求めよ。</div>
+      <div class="a"><span class="lab">完成答案</span>$x_1{=}t$→$x_2{=}t,x_3{=}-t$。<b>$V=\langle(1,1,-1)\rangle$</b>。垂直条件 $y_1{+}y_2{-}y_3{=}0$→<b>$V^\perp=\langle(-1,1,0),(1,0,1)\rangle$</b>（次元2）。$1{+}2{=}3$ ✓</div>
+    </div>
+
+    <div class="pathead"><h3>⑦ 行列の対角化</h3><div class="see"><b>手順</b>：$\det(A{-}\lambda I){=}0$ で $\lambda$→各 $\lambda$ で $(A{-}\lambda I)\boldsymbol x{=}\boldsymbol0$→固有ベクトルを縦に並べ $P$。検算 $A\boldsymbol p{=}\lambda\boldsymbol p$</div></div>
+
+    <div class="prob">
+      <div class="q"><span class="yr real">2025 問5</span>$A=\begin{pmatrix}6&4&-4\\-3&-2&3\\5&4&-3\end{pmatrix}$ が対角化可能ならば変換行列を求めて対角化せよ。</div>
+      <div class="a"><span class="lab">完成答案</span>$\det(A{-}\lambda I){=}-(\lambda{-}1)(\lambda{-}2)(\lambda{+}2){=}0$→<b>$\lambda{=}1,2,-2$</b>（相異なるので可能）。$\lambda{=}1{:}\boldsymbol p_1{=}(0,1,1)$、$\lambda{=}2{:}\boldsymbol p_2{=}(1,0,1)$、$\lambda{=}-2{:}\boldsymbol p_3{=}(1,-1,1)$。<br>$P=\begin{pmatrix}0&1&1\\1&0&-1\\1&1&1\end{pmatrix}$<br>$P^{-1}AP=\begin{pmatrix}1&0&0\\0&2&0\\0&0&-2\end{pmatrix}$<br>検算: $A\boldsymbol p_2{=}(2,0,2){=}2\boldsymbol p_2$、$1{+}2{-}2{=}1{=}\mathrm{tr}A$ ✓</div>
     </div>
 
   </div>
@@ -220,18 +206,18 @@
   <h2 class="band o">📎 ALA（Boyd）公式 ― 出たらこれで</h2>
   <div class="formulas">
     <div class="fbox"><b>距離・角度</b>：距離$=\|\boldsymbol a-\boldsymbol b\|$、$\cos\theta=\frac{\boldsymbol a\cdot\boldsymbol b}{\|\boldsymbol a\|\|\boldsymbol b\|}$、$\|\boldsymbol a\pm\boldsymbol b\|^2=\|\boldsymbol a\|^2\pm2\boldsymbol a\cdot\boldsymbol b+\|\boldsymbol b\|^2$</div>
-    <div class="fbox"><b>QR分解</b>：$A=QR$、$Q^TQ=I$（列が正規直交＝GSの結果）、$R$ は上三角。検算は $QR{=}A$ と $Q^TQ{=}I$</div>
-    <div class="fbox"><b>擬似逆・最小二乗</b>：$A^\dagger=(A^TA)^{-1}A^T$、最小二乗 $\hat{\boldsymbol x}=A^\dagger\boldsymbol b$（$A^TA\hat{\boldsymbol x}=A^T\boldsymbol b$）</div>
-    <div class="fbox"><b>状態遷移・ムーア</b>：$\boldsymbol x_{t+1}=A\boldsymbol x_t\Rightarrow\boldsymbol x_3=A^2\boldsymbol x_1$。ムーア則は $\log_{10}y\approx\theta_1+\theta_2(t-1970)$ を最小二乗</div>
+    <div class="fbox"><b>QR分解</b>：$A=QR$、$Q^TQ=I$、$R$ 上三角。検算 $QR{=}A$, $Q^TQ{=}I$</div>
+    <div class="fbox"><b>擬似逆・最小二乗</b>：$A^\dagger=(A^TA)^{-1}A^T$、$\hat{\boldsymbol x}=A^\dagger\boldsymbol b$（$A^TA\hat{\boldsymbol x}=A^T\boldsymbol b$）</div>
+    <div class="fbox"><b>状態遷移・ムーア</b>：$\boldsymbol x_{t+1}=A\boldsymbol x_t\Rightarrow\boldsymbol x_3=A^2\boldsymbol x_1$。ムーア則 $\log_{10}y\approx\theta_1+\theta_2(t-1970)$</div>
   </div>
 
   <div class="foot">
     <h3>🎯 当日の立ち回り</h3>
     <ul>
       <li><b>紙は持ち込みOK・パソコンだけNG</b>。このプリントを見ながら解いてよい。<b>ボールペンで書くと加点</b>。</li>
-      <li>まず全体マップで「どのパターンか」を判定→該当欄の手順を上から実行→記入例の形をまねて書く。</li>
-      <li>各問<b>最後に検算</b>：代入して戻るか／次元が足して合うか／$A\boldsymbol p=\lambda\boldsymbol p$ か。</li>
-      <li>③で計算が合わない時は「表せない」を疑う（矛盾は間違いでなく答え）。1問7分で見切って次へ。</li>
+      <li>全体マップで「どのパターンか」判定→該当欄の手順→同種の過去問の完成答案の形をまねて書く。</li>
+      <li>各問<b>最後に検算</b>：代入して戻るか／次元が足して合うか／$A\boldsymbol p{=}\lambda\boldsymbol p$ か。</li>
+      <li>③で計算が合わない時は「表せない」を疑う（矛盾は答え）。1問7分で見切って次へ。</li>
     </ul>
   </div>
 </main>
